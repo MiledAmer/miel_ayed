@@ -1,37 +1,72 @@
-import Link from "next/link";
+'use client';
 
-export default function HomePage() {
+import { useState, useEffect } from 'react';
+import { Header } from '@/components/header';
+import { HeroSection } from '@/components/hero-section';
+import { ProductGrid } from '@/components/product-grid';
+import { SpecialOffersCarousel } from '@/components/special-offers-carousel';
+import { products } from '@/lib/products';
+import { type Language } from '@/lib/i18n';
+
+export default function Home() {
+  const [language, setLanguage] = useState<Language>('en');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('language') as Language | null;
+    if (saved) setLanguage(saved);
+
+    const handleStorageChange = () => {
+      const updated = localStorage.getItem('language') as Language | null;
+      if (updated) setLanguage(updated);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
+
+  const specialProducts = products.filter((p) => p.category === 'special');
+  const allProducts = products;
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
+    <main className="min-h-screen bg-background">
+      <Header language={language} />
+
+      <section className="max-w-7xl mx-auto px-4 py-4 md:py-6">
+        <HeroSection language={language} />
+      </section>
+
+      {/* Special Offers Carousel */}
+      <section className="max-w-7xl mx-auto px-4 py-8 md:py-12">
+        {specialProducts.length > 3 ? (
+          <SpecialOffersCarousel products={specialProducts} language={language} />
+        ) : (
+          <div className="bg-secondary rounded-lg p-8 text-center space-y-4">
+            <h2 className="text-3xl font-bold text-secondary-foreground">
+              Special Offers
+            </h2>
+            {specialProducts.length > 0 && (
+              <ProductGrid products={specialProducts} language={language} />
+            )}
+          </div>
+        )}
+      </section>
+
+      {/* Products Section */}
+      <section id="products" className="max-w-7xl mx-auto px-4 py-12 md:py-16">
+        <h2 className="text-3xl font-bold mb-8 text-center text-foreground">
+          Our Collection
+        </h2>
+        <ProductGrid products={allProducts} language={language} />
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-secondary text-secondary-foreground py-8 mt-16">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <p className="text-sm">
+            © 2025 Miel Ayed. عسل عياد. All rights reserved.
+          </p>
         </div>
-      </div>
+      </footer>
     </main>
   );
 }
