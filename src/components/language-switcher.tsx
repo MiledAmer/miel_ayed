@@ -21,7 +21,6 @@ export function LanguageSwitcher({ currentLanguage }: LanguageSwitcherProps) {
           variant={lang === currentLanguage ? 'default' : 'outline'}
           size="sm"
           onClick={() => {
-            // Store language preference
             localStorage.setItem('language', lang);
             router.refresh();
           }}

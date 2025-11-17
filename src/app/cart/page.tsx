@@ -6,7 +6,7 @@ import { Header } from '@/components/header';
 import { CartItemCard } from '@/components/cart-item-card';
 import { useCartStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
-import { Language } from '@/lib/i18n';
+import { type Language } from '@/lib/i18n';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
 
 export default function CartPage() {

@@ -8,7 +8,7 @@ export const translations = {
       language: 'Language',
     },
     home: {
-      title: 'Golden Honey',
+      title: 'Ayed Honey',
       subtitle: 'Premium organic honey from nature',
       shop: 'Shop Now',
       special: 'Special Offers',
@@ -47,7 +47,7 @@ export const translations = {
       language: 'Langue',
     },
     home: {
-      title: 'Miel Doré',
+      title: 'Miel Ayed',
       subtitle: 'Miel biologique premium de la nature',
       shop: 'Acheter Maintenant',
       special: 'Offres Spéciales',
@@ -86,7 +86,7 @@ export const translations = {
       language: 'اللغة',
     },
     home: {
-      title: 'العسل الذهبي',
+      title: 'العسل عياد',
       subtitle: 'عسل عضوي فاخر من الطبيعة',
       shop: 'تسوق الآن',
       special: 'عروض خاصة',
