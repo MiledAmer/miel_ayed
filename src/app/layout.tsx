@@ -5,7 +5,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Miel Ayed - عسل عياد',
-  description: 'Premium organic honey from Miel Ayed. Discover authentic honey varieties. TND prices included.',
+  description: 'Honey products from Tunisia - منتجات العسل التونسية',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -26,13 +26,19 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport = {
+  themeColor: '#372d2b',
+  colorScheme: 'light',
+  userScalable: true,
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body className={`font-sans antialiased`}>
         {children}
         {/* <Analytics /> */}
