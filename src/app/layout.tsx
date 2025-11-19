@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 // import { Analytics } from '@vercel/analytics/next'
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import localFont from "next/font/local";
+
+const myFont = localFont({
+  src: "./29LT-Azer-Bold.otf",
+  weight: "700",
+});
 
 export const metadata: Metadata = {
   title: "Miel Ayed - عسل عياد",
@@ -38,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={myFont.className}>
       <body className={`font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
