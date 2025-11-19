@@ -63,27 +63,25 @@ export function Header() {
 
   return (
     <header
-      className={`border-border bg-background sticky top-0 z-50 border-b shadow-sm ${isRTL ? "rtl" : "ltr"}`}
+      className={`border-border bg-background/60 backdrop-blur-sm sticky top-0 z-50 border-b shadow-sm ${isRTL ? "rtl" : "ltr"}`}
       dir={isRTL ? "rtl" : "ltr"}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between gap-6">
-          <MobileNav />
-
           {/* Logo */}
           <Link href="/">
             {/* <div className="text-2xl font-bold text-primary">Miel Ayed</div> */}
             <Image
               src="/logo.png"
               alt="Miel Ayed Logo"
-              width={100}
-              height={100}
+              width={250}
+              height={150}
               priority
             />
           </Link>
 
           {/* Navigation Menu */}
-          <nav className="hidden md:flex flex-1 items-center gap-6 ">
+          <nav className="hidden flex-1 items-center gap-6 md:flex">
             {/* Category Dropdown */}
             <div className="group relative">
               <button
@@ -159,7 +157,8 @@ export function Header() {
                 )}
               </Button>
             </Link>
-              <ThemeToggle />
+            <ThemeToggle />
+            <MobileNav />
           </div>
         </div>
       </div>
