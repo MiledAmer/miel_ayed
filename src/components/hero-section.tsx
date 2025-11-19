@@ -37,7 +37,7 @@ export function HeroSection() {
 
   return (
     <section
-      className={`relative bg-gradient-to-b from-cream to-background py-20 px-4 ${
+      className={`relative from-cream to-background py-20 px-4 ${
         isRTL ? 'rtl' : 'ltr'
       }`}
       dir={isRTL ? 'rtl' : 'ltr'}

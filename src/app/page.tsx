@@ -5,7 +5,7 @@ import { Footer } from '@/components/footer'
 
 export default function RootPage() {
   return (
-    <main>
+    <main className='bg-background'>
       <Header />
       <HeroSection />
       <HighlightedProducts />
