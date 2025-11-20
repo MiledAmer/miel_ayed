@@ -1,0 +1,98 @@
+{
+  "HomePage": {
+    "Header": {
+      "products": "Products",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "HeroSection": {
+      "title": "Premium Tunisian Honey",
+      "subtitle": "Discover authentic honey and bee products from Tunisia. Organic, pure, and delivered to your door.",
+      "cta": "Explore Products"
+    },
+    "HighlightedProducts": {
+      "featured": "Featured Products",
+      "subtitle": "Hand-picked selection of our finest honey and bee products"
+    },
+    "Footer": {
+      "home": "Home",
+      "products": "Products",
+      "about_us": "About Us",
+      "about_desc": "Miel Ayed - Premium honey products from Tunisia",
+      "quick_links": "Quick Links",
+      "contact": "Contact",
+      "follow_us": "Follow Us",
+      "copyright": "© 2025 Miel Ayed. All rights reserved.",
+      "phone": "Phone",
+      "email": "Email"
+    }
+  },
+  "ProductsPage": {
+    "products": "Products",
+    "no_results": "No products found for this filter.",
+    "showing": "Showing",
+    "products_count": "products"
+  },
+  "ContactPage": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with Miel Ayed. We'd love to hear from you.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "or": "Or contact us directly:",
+    "phone": "Phone",
+    "phone_number": "+216 XX XXX XXXX",
+    "email_label": "Email",
+    "email_address": "info@mielayed.tn",
+    "location": "Location",
+    "address": "Tunisia",
+    "hours": "Business Hours",
+    "hours_desc": "Monday - Friday: 9:00 AM - 6:00 PM",
+    "thanks": "Thank you for your message! We'll get back to you soon."
+  },
+  "CartPage": {
+    "cart": "Shopping Cart",
+    "empty_cart": "Your cart is empty",
+    "empty_desc": "Start shopping to add items to your cart",
+    "continue_shopping": "Continue Shopping",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "price": "TND",
+    "order_summary": "Order Summary",
+    "shipping": "Shipping",
+    "free": "Free",
+    "checkout_integration_coming_soon": "Checkout integration coming soon!",
+    "remove": "Remove"
+  },
+  "ProductCard": {
+    "add_to_cart": "Add to Cart",
+    "price": "TND",
+    "description": "Description",
+    "category": "Category",
+    "quantity": "Quantity",
+    "added": "Added to cart!"
+  },
+  "ProductsFilters": {
+    "filter": "Filter",
+    "categories": "Categories",
+    "all": "All Products",
+    "clear": "Clear Filters"
+  },
+  "AboutPage": {
+    "title": "About Miel Ayed",
+    "intro": "Welcome to Miel Ayed, where tradition meets quality in every drop of honey.",
+    "story_title": "Our Story",
+    "story_desc": "Founded with a passion for authentic Tunisian honey, Miel Ayed represents generations of beekeeping expertise. We believe in sustainable practices and the pure quality of natural products. Each jar of honey is a testament to our commitment to excellence.",
+    "mission_title": "Our Mission",
+    "mission_desc": "To provide the world with the finest honey and bee products from Tunisia, while supporting sustainable beekeeping practices and preserving traditional methods.",
+    "values_title": "Our Values",
+    "quality": "Quality",
+    "quality_desc": "We use only the finest ingredients and maintain strict quality standards in every product.",
+    "sustainability": "Sustainability",
+    "sustainability_desc": "Our beekeeping practices support environmental conservation and bee population health.",
+    "community": "Community",
+    "community_desc": "We work closely with local beekeepers and support the communities we source from."
+  }
+}

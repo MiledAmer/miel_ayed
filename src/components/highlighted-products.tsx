@@ -1,57 +1,39 @@
-'use client'
+"use client";
 
-import { useLanguage } from '@/hooks/use-language'
-import { ProductCard } from './product-card'
-import { mockProducts } from '@/lib/mock-data'
-
-const translations = {
-  en: {
-    featured: 'Featured Products',
-    subtitle: 'Hand-picked selection of our finest honey and bee products',
-  },
-  fr: {
-    featured: 'Produits Vedettes',
-    subtitle: 'Sélection soigneusement choisie de nos meilleurs miels et produits apicoles',
-  },
-  ar: {
-    featured: 'المنتجات المميزة',
-    subtitle: 'مجموعة مختارة بعناية من أفضل العسل ومنتجات النحل لدينا',
-  },
-}
+import { ProductCard } from "./product-card";
+import { mockProducts } from "@/lib/mock-data";
+import { useLocale, useTranslations } from "next-intl";
 
 export function HighlightedProducts() {
-  const { language, mounted } = useLanguage()
-
-  if (!mounted) return null
-
-  const t = translations[language as keyof typeof translations] || translations.fr
-  const isRTL = language === 'ar'
+  const t = useTranslations("HomePage.HighlightedProducts");
+  const locale  = useLocale();
+  const isRTL = locale === "ar";
 
   // Show first 6 products as highlighted
-  const featured = mockProducts.slice(0, 6)
+  const featured = mockProducts.slice(0, 6);
 
   return (
     <section
       id="highlighted-products"
-      className={`py-16 px-4 ${isRTL ? 'rtl' : 'ltr'}`}
-      dir={isRTL ? 'rtl' : 'ltr'}
+      className={`px-4 py-16 ${isRTL ? "rtl" : "ltr"}`}
+      dir={isRTL ? "rtl" : "ltr"}
     >
       <div className="container mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4 text-balance">
-            {t.featured}
+        <div className="mb-12 text-center">
+          <h2 className="text-primary mb-4 text-3xl font-bold text-balance md:text-4xl">
+            {t("featured")}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            {t.subtitle}
+          <p className="text-muted-foreground mx-auto max-w-2xl text-lg text-pretty">
+            {t("subtitle")}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {featured.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

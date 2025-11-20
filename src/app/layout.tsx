@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 // import { Analytics } from '@vercel/analytics/next'
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import { NextIntlClientProvider } from "next-intl";
 import localFont from "next/font/local";
+import { getLocale } from "next-intl/server";
 
 const myFont = localFont({
   src: "./29LT-Azer-Bold.otf",
@@ -38,13 +40,14 @@ export const viewport = {
   userScalable: true,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
   return (
-    <html lang="en" className={myFont.className}>
+    <html lang={locale} className={myFont.className}>
       <body className={`font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
@@ -52,7 +55,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange={false}
         >
-          {children}
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+
           {/* <Analytics /> */}
         </ThemeProvider>
       </body>

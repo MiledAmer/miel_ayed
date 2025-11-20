@@ -6,7 +6,6 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useLanguage } from "@/hooks/use-language";
 import { ChevronDown, Menu, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -15,39 +14,16 @@ import { CATEGORIES } from "@/lib/types";
 import Image from "next/image";
 import { LanguageSelector } from "./language-selector";
 import { ThemeToggle } from "./theme-toggle";
-
-const translations = {
-  en: {
-    menu: "Menu",
-    products: "Products",
-    about: "About",
-    contact: "Contact",
-  },
-  fr: {
-    menu: "Menu",
-    products: "Produits",
-    about: "À propos",
-    contact: "Contact",
-  },
-  ar: {
-    menu: "القائمة",
-    products: "المنتجات",
-    about: "معلومات",
-    contact: "تواصل",
-  },
-};
+import { useTranslations } from "next-intl";
 
 export function MobileNav() {
   const router = useRouter();
-  const { language, mounted } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
-  const t =
-    translations[language as keyof typeof translations] || translations.fr;
-  // const isRTL = language === "ar";
-
-  if (!mounted) return null;
+  const t = useTranslations("HomePage.Header");
+  // const locale = useLocale();
+  // const isRTL = locale === "ar";
 
   const handleCategoryClick = (categorySlug: string) => {
     setIsOpen(false);
@@ -111,7 +87,7 @@ export function MobileNav() {
                 }
                 className="hover:bg-muted text-foreground flex w-full items-center justify-between px-6 py-4 font-medium transition-colors"
               >
-                {t.products}
+                {t("products")}
                 <ChevronDown
                   className={`h-4 w-4 transition-transform ${
                     expandedCategory === "products" ? "rotate-180" : ""
@@ -155,7 +131,7 @@ export function MobileNav() {
               href="/about"
               className="text-foreground hover:text-accent block px-6 py-4 font-medium transition-colors"
             >
-              {t.about}
+              {t("about")}
             </Link>
 
             {/* Contact Link */}
@@ -163,7 +139,7 @@ export function MobileNav() {
               href="/contact"
               className="text-foreground hover:text-accent block px-6 py-4 font-medium transition-colors"
             >
-              {t.contact}
+              {t("contact")}
             </Link>
           </nav>
         </div>

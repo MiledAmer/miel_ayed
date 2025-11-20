@@ -8,8 +8,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/hooks/use-language";
 import type { Language } from "@/lib/types";
+import type { Locales } from "@/i18n/request";
+import { setLocale } from "@/i18n/actions";
+import { useLocale } from "next-intl";
+// import { setLocale, type Locales } from "@/i18n/request";
 
 const LANGUAGES = [
   { code: "ar", name: "العربية", flag: TN },
@@ -18,17 +21,15 @@ const LANGUAGES = [
 ];
 
 export function LanguageSelector() {
-  const { language, changeLanguage, mounted } = useLanguage();
-  if (!mounted) return null;
+  const locale = useLocale();
 
   const currentLanguage =
-    LANGUAGES.find((lang) => lang.code === language) ?? LANGUAGES[0];
+    LANGUAGES.find((lang) => lang.code === locale) ?? LANGUAGES[0];
 
-  const CurrentFlag = currentLanguage?.flag ?? FR;
+  const CurrentFlag = currentLanguage?.flag ?? US;
 
-  const handleLanguageChange = (code: Language) => {
-    changeLanguage(code);
-    window.location.reload(); // refresh the page
+  const handleLanguageChange = async (code: Language) => {
+    await setLocale(code as Locales);
   };
 
   return (
@@ -41,7 +42,7 @@ export function LanguageSelector() {
       <DropdownMenuContent align="end" className="w-fit">
         {LANGUAGES.map((lang) => {
           const Flag = lang.flag;
-          const isActive = lang.code === language;
+          const isActive = lang.code === locale;
           return (
             <DropdownMenuItem
               key={lang.code}

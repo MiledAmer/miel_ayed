@@ -3,44 +3,25 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ShoppingCart, ChevronDown } from "lucide-react";
-import { useLanguage } from "@/hooks/use-language";
 import { useCart } from "@/lib/store";
-import { LanguageToggle } from "./language-toggle";
 import { MobileNav } from "./mobile-nav";
 import { Button } from "@/components/ui/button";
 import { CATEGORIES } from "@/lib/types";
 import { useState } from "react";
-import Image from "next/image";
 import { ThemeToggle } from "./theme-toggle";
 import { LanguageSelector } from "./language-selector";
-
-const translations = {
-  en: {
-    products: "Products",
-    about: "About",
-    contact: "Contact",
-  },
-  fr: {
-    products: "Produits",
-    about: "À propos",
-    contact: "Contact",
-  },
-  ar: {
-    products: "المنتجات",
-    about: "معلومات",
-    contact: "تواصل",
-  },
-};
+import { useLocale, useTranslations } from "next-intl";
+import Image from "next/image";
 
 export function Header() {
+  const locale = useLocale();
+  const t = useTranslations("HomePage.Header");
+
   const router = useRouter();
-  const { language, mounted } = useLanguage();
   const { items } = useCart();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
-  const t =
-    translations[language as keyof typeof translations] || translations.fr;
-  const isRTL = language === "ar";
+  const isRTL = locale === "ar";
 
   const cartCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -58,8 +39,6 @@ export function Header() {
       `/products?category=${categorySlug}&subcategory=${encodeURIComponent(subcategory)}`,
     );
   };
-
-  if (!mounted) return null;
 
   return (
     <header
@@ -93,7 +72,7 @@ export function Header() {
                   )
                 }
               >
-                {t.products}
+                {t("products")}
                 <ChevronDown className="h-4 w-4" />
               </button>
 
@@ -131,18 +110,18 @@ export function Header() {
               href="/about"
               className="text-foreground hover:text-accent font-medium transition-colors"
             >
-              {t.about}
+              {t("about")}
             </Link>
             <Link
               href="/contact"
               className="text-foreground hover:text-accent font-medium transition-colors"
             >
-              {t.contact}
+              {t("contact")}
             </Link>
           </nav>
 
           {/* Right Actions */}
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden items-center gap-3 sm:flex">
             {/* <LanguageToggle /> */}
             <LanguageSelector />
 

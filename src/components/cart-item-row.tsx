@@ -2,34 +2,27 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useLanguage } from '@/hooks/use-language'
 import { useCart } from '@/lib/store'
 import { Button } from '@/components/ui/button'
 import { Trash2 } from 'lucide-react'
 import type { CartItem } from '@/lib/types'
+import { useLocale, useTranslations } from 'next-intl'
 
 interface CartItemRowProps {
   item: CartItem
 }
 
-const translations = {
-  en: { remove: 'Remove', price: 'TND', subtotal: 'Subtotal' },
-  fr: { remove: 'Supprimer', price: 'TND', subtotal: 'Sous-total' },
-  ar: { remove: 'إزالة', price: 'دينار', subtotal: 'الإجمالي الفرعي' },
-}
-
 export function CartItemRow({ item }: CartItemRowProps) {
-  const { language, mounted } = useLanguage()
+  
+  const t = useTranslations('CartPage')
+  const locale = useLocale()
+  const isRTL = locale === 'ar'
+  
+
   const { updateQuantity, removeItem } = useCart()
-
-  if (!mounted) return null
-
-  const t = translations[language as keyof typeof translations] || translations.fr
-  const isRTL = language === 'ar'
-
   const getName = () => {
-    if (language === 'en') return item.product.nameEn
-    if (language === 'ar') return item.product.nameAr
+    if (locale === 'en') return item.product.nameEn
+    if (locale === 'ar') return item.product.nameAr
     return item.product.nameFr
   }
 
@@ -44,7 +37,7 @@ export function CartItemRow({ item }: CartItemRowProps) {
     >
       {/* Product Image */}
       <Link href={`/product/${item.product.id}`}>
-        <div className="relative w-24 h-24 bg-muted rounded-lg overflow-hidden flex-shrink-0">
+        <div className="relative w-24 h-24 bg-muted rounded-lg overflow-hidden">
           <Image
             src={item.product.image || "/placeholder.svg"}
             alt={getName()}
@@ -63,7 +56,7 @@ export function CartItemRow({ item }: CartItemRowProps) {
             </h3>
           </Link>
           <p className="text-sm text-muted-foreground">
-            {item.product.price.toFixed(2)} {t.price}
+            {item.product.price.toFixed(2)} {t('price')}
           </p>
         </div>
 
@@ -92,9 +85,9 @@ export function CartItemRow({ item }: CartItemRowProps) {
       {/* Subtotal & Remove */}
       <div className="flex flex-col items-end justify-between">
         <div className="text-right">
-          <p className="text-xs text-muted-foreground mb-1">{t.subtotal}</p>
+          <p className="text-xs text-muted-foreground mb-1">{t('subtotal')}</p>
           <p className="text-lg font-bold text-accent">
-            {subtotal.toFixed(2)} {t.price}
+            {subtotal.toFixed(2)} {t('price')}
           </p>
         </div>
 

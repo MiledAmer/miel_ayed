@@ -1,94 +1,63 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
-import { useLanguage } from '@/hooks/use-language'
-import { useCart } from '@/lib/store'
-import { Button } from '@/components/ui/button'
-import { ShoppingCart } from 'lucide-react'
-import { useState } from 'react'
-import type { Product } from '@/lib/types'
+import Image from "next/image";
+import { useCart } from "@/lib/store";
+import { Button } from "@/components/ui/button";
+import { ShoppingCart } from "lucide-react";
+import { useState } from "react";
+import type { Product } from "@/lib/types";
+import { useLocale, useTranslations } from "next-intl";
 
 interface ProductDetailProps {
-  product: Product
+  product: Product;
 }
 
-const translations = {
-  en: {
-    add_to_cart: 'Add to Cart',
-    price: 'TND',
-    description: 'Description',
-    category: 'Category',
-    quantity: 'Quantity',
-    added: 'Added to cart!',
-  },
-  fr: {
-    add_to_cart: 'Ajouter au panier',
-    price: 'TND',
-    description: 'Description',
-    category: 'Catégorie',
-    quantity: 'Quantité',
-    added: 'Ajouté au panier!',
-  },
-  ar: {
-    add_to_cart: 'أضف إلى السلة',
-    price: 'دينار',
-    description: 'الوصف',
-    category: 'الفئة',
-    quantity: 'الكمية',
-    added: 'تمت الإضافة إلى السلة!',
-  },
-}
 
 export function ProductDetail({ product }: ProductDetailProps) {
-  const { language, mounted } = useLanguage()
-  const { addItem } = useCart()
-  const [quantity, setQuantity] = useState(1)
-  const [showSuccess, setShowSuccess] = useState(false)
+  const t = useTranslations("ProductCard");
+  const locale = useLocale();
+  const isRTL = locale === "ar";
 
-  if (!mounted) return null
-
-  const t = translations[language as keyof typeof translations] || translations.fr
-  const isRTL = language === 'ar'
+  const { addItem } = useCart();
+  const [quantity, setQuantity] = useState(1);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const getName = () => {
-    if (language === 'en') return product.nameEn
-    if (language === 'ar') return product.nameAr
-    return product.nameFr
-  }
+    if (locale === "en") return product.nameEn;
+    if (locale === "ar") return product.nameAr;
+    return product.nameFr;
+  };
 
   const getDescription = () => {
-    if (language === 'en') return product.descriptionEn
-    if (language === 'ar') return product.descriptionAr
-    return product.descriptionFr
-  }
+    if (locale === "en") return product.descriptionEn;
+    if (locale === "ar") return product.descriptionAr;
+    return product.descriptionFr;
+  };
 
   const getCategoryName = () => {
-    if (language === 'en') return product.category
-    if (language === 'ar') return product.category
-    return product.category
-  }
+    if (locale === "en") return product.category;
+    if (locale === "ar") return product.category;
+    return product.category;
+  };
 
   const handleAddToCart = () => {
-    addItem(product, quantity)
-    setShowSuccess(true)
-    setTimeout(() => setShowSuccess(false), 3000)
-  }
+    addItem(product, quantity);
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 3000);
+  };
 
   const handleQuantityChange = (value: number) => {
     if (value >= 1) {
-      setQuantity(value)
+      setQuantity(value);
     }
-  }
+  };
 
   return (
-    <div
-      className={`${isRTL ? 'rtl' : 'ltr'}`}
-      dir={isRTL ? 'rtl' : 'ltr'}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className={`${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         {/* Product Image */}
         <div className="flex items-center justify-center">
-          <div className="relative w-full aspect-square bg-muted rounded-lg overflow-hidden">
+          <div className="bg-muted relative aspect-square w-full overflow-hidden rounded-lg">
             <Image
               src={product.image || "/placeholder.svg"}
               alt={getName()}
@@ -102,27 +71,28 @@ export function ProductDetail({ product }: ProductDetailProps) {
         {/* Product Info */}
         <div className="flex flex-col justify-start">
           <div className="mb-6">
-            <h1 className="text-3xl md:text-4xl font-bold text-primary mb-2">
+            <h1 className="text-primary mb-2 text-3xl font-bold md:text-4xl">
               {getName()}
             </h1>
             {product.subcategory && (
-              <p className="text-sm text-muted-foreground mb-2">
+              <p className="text-muted-foreground mb-2 text-sm">
                 {product.subcategory}
               </p>
             )}
           </div>
 
           {/* Price */}
-          <div className="mb-6 pb-6 border-b border-border">
-            <div className="text-4xl font-bold text-accent">
-              {product.price.toFixed(2)} <span className="text-2xl">{t.price}</span>
+          <div className="border-border mb-6 border-b pb-6">
+            <div className="text-accent text-4xl font-bold">
+              {product.price.toFixed(2)}{" "}
+              <span className="text-2xl">{t("price")}</span>
             </div>
           </div>
 
           {/* Description */}
           <div className="mb-6">
-            <h2 className="text-lg font-semibold text-foreground mb-3">
-              {t.description}
+            <h2 className="text-foreground mb-3 text-lg font-semibold">
+              {t("description")}
             </h2>
             <p className="text-muted-foreground leading-relaxed">
               {getDescription()}
@@ -130,29 +100,32 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </div>
 
           {/* Category */}
-          <div className="mb-6 pb-6 border-b border-border">
-            <p className="text-sm text-muted-foreground">
-              <span className="font-semibold text-foreground">{t.category}:</span> {getCategoryName()}
+          <div className="border-border mb-6 border-b pb-6">
+            <p className="text-muted-foreground text-sm">
+              <span className="text-foreground font-semibold">
+                {t("category")}:
+              </span>{" "}
+              {getCategoryName()}
             </p>
           </div>
 
           {/* Quantity Selector */}
           <div className="mb-6 flex items-center gap-4">
-            <span className="font-semibold text-foreground">{t.quantity}:</span>
-            <div className="flex items-center border border-border rounded-lg bg-card">
+            <span className="text-foreground font-semibold">{t("quantity")}:</span>
+            <div className="border-border bg-card flex items-center rounded-lg border">
               <button
                 onClick={() => handleQuantityChange(quantity - 1)}
-                className="px-4 py-2 text-foreground hover:bg-muted transition-colors"
+                className="text-foreground hover:bg-muted px-4 py-2 transition-colors"
                 aria-label="Decrease quantity"
               >
                 −
               </button>
-              <span className="px-6 py-2 font-semibold text-foreground">
+              <span className="text-foreground px-6 py-2 font-semibold">
                 {quantity}
               </span>
               <button
                 onClick={() => handleQuantityChange(quantity + 1)}
-                className="px-4 py-2 text-foreground hover:bg-muted transition-colors"
+                className="text-foreground hover:bg-muted px-4 py-2 transition-colors"
                 aria-label="Increase quantity"
               >
                 +
@@ -164,20 +137,20 @@ export function ProductDetail({ product }: ProductDetailProps) {
           <Button
             onClick={handleAddToCart}
             size="lg"
-            className="w-full bg-accent hover:bg-accent/90 text-accent-foreground mb-4"
+            className="bg-accent hover:bg-accent/90 text-accent-foreground mb-4 w-full"
           >
-            <ShoppingCart className="w-5 h-5 mr-2" />
-            {t.add_to_cart}
+            <ShoppingCart className="mr-2 h-5 w-5" />
+            {t("add_to_cart")}
           </Button>
 
           {/* Success Message */}
           {showSuccess && (
-            <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm">
-              {t.added}
+            <div className="rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-700">
+              {t("added")}
             </div>
           )}
         </div>
       </div>
     </div>
-  )
+  );
 }

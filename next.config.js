@@ -3,8 +3,12 @@
  * for Docker builds.
  */
 import "./src/env.js";
+import createNextIntlPlugin from 'next-intl/plugin';
+ 
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const nextConfig = {};
+const withNextIntl = createNextIntlPlugin();
 
-export default config;
+
+export default withNextIntl(nextConfig);

@@ -1,0 +1,98 @@
+{
+  "HomePage": {
+    "Header": {
+      "products": "Produits",
+      "about": "À propos",
+      "contact": "Contact"
+    },
+    "HeroSection": {
+      "title": "Miel Tunisien Haut de Gamme",
+      "subtitle": "Découvrez le miel authentique et les produits apicoles de Tunisie. Biologique, pur et livré chez vous.",
+      "cta": "Explorer les Produits"
+    },
+    "HighlightedProducts": {
+      "featured": "Produits Vedettes",
+      "subtitle": "Sélection soigneusement choisie de nos meilleurs miels et produits apicoles"
+    },
+    "Footer": {
+      "home": "Accueil",
+      "products": "Produits",
+      "about_us": "À Propos",
+      "about_desc": "Miel Ayed - Produits de miel premium de Tunisie",
+      "quick_links": "Liens Rapides",
+      "contact": "Contact",
+      "follow_us": "Suivez-nous",
+      "copyright": "© 2025 Miel Ayed. Tous droits réservés.",
+      "phone": "Téléphone",
+      "email": "Email"
+    }
+  },
+  "ProductsPage": {
+    "products": "Produits",
+    "no_results": "Aucun produit trouvé pour ce filtre.",
+    "showing": "Affichage",
+    "products_count": "produits"
+  },
+  "ContactPage": {
+    "title": "Nous Contacter",
+    "subtitle": "Restez en contact avec Miel Ayed. Nous aimerions vous entendre.",
+    "name": "Nom",
+    "email": "Email",
+    "message": "Message",
+    "send": "Envoyer un message",
+    "or": "Ou contactez-nous directement:",
+    "phone": "Téléphone",
+    "phone_number": "+216 XX XXX XXXX",
+    "email_label": "Email",
+    "email_address": "info@mielayed.tn",
+    "location": "Localisation",
+    "address": "Tunisie",
+    "hours": "Heures d'ouverture",
+    "hours_desc": "Lundi - Vendredi: 9h00 - 18h00",
+    "thanks": "Merci pour votre message! Nous vous recontacterons bientôt."
+  },
+  "CartPage": {
+    "cart": "Panier",
+    "empty_cart": "Votre panier est vide",
+    "empty_desc": "Commencez vos achats pour ajouter des articles à votre panier",
+    "continue_shopping": "Continuer les achats",
+    "subtotal": "Sous-total",
+    "total": "Total",
+    "checkout": "Procéder au paiement",
+    "price": "TND",
+    "order_summary": "Résumé de la commande",
+    "shipping": "Livraison",
+    "free": "Gratuit",
+    "checkout_integration_coming_soon": "L'intégration du paiement arrive bientôt !",
+    "remove": "Supprimer"
+  },
+  "ProductCard": {
+    "add_to_cart": "Ajouter au panier",
+    "price": "TND",
+    "description": "Description",
+    "category": "Catégorie",
+    "quantity": "Quantité",
+    "added": "Ajouté au panier!"
+  },
+  "ProductsFilters": {
+    "filter": "Filtrer",
+    "categories": "Catégories",
+    "all": "Tous les Produits",
+    "clear": "Effacer les filtres"
+  },
+  "AboutPage": {
+    "title": "À Propos de Miel Ayed",
+    "intro": "Bienvenue chez Miel Ayed, où la tradition rencontre la qualité dans chaque goutte de miel.",
+    "story_title": "Notre Histoire",
+    "story_desc": "Fondée avec une passion pour le miel tunisien authentique, Miel Ayed représente des générations d'expertise apicole. Nous croyons aux pratiques durables et à la pureté des produits naturels. Chaque pot de miel témoigne de notre engagement envers l'excellence.",
+    "mission_title": "Notre Mission",
+    "mission_desc": "Fournir au monde les meilleurs miels et produits apicoles de Tunisie, tout en soutenant les pratiques apicoles durables et en préservant les méthodes traditionnelles.",
+    "values_title": "Nos Valeurs",
+    "quality": "Qualité",
+    "quality_desc": "Nous n'utilisons que les meilleurs ingrédients et maintenons des normes de qualité strictes dans chaque produit.",
+    "sustainability": "Durabilité",
+    "sustainability_desc": "Nos pratiques apicoles soutiennent la conservation de l'environnement et la santé de la population des abeilles.",
+    "community": "Communauté",
+    "community_desc": "Nous travaillons en étroite collaboration avec les apiculteurs locaux et soutenons les communautés d'où nous provenons."
+  }
+}
