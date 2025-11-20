@@ -12,8 +12,6 @@ export default function AboutPage() {
 
   return (
     <main className={isRTL ? "rtl" : "ltr"} dir={isRTL ? "rtl" : "ltr"}>
-      <Header />
-
       <div className="container mx-auto px-4 py-12">
         {/* Hero */}
         <div className="mb-16 text-center">
@@ -94,8 +92,6 @@ export default function AboutPage() {
           </div>
         </section>
       </div>
-
-      <Footer />
     </main>
   );
 }

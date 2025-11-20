@@ -1,15 +1,11 @@
-import { Header } from "@/components/header";
 import { HeroSection } from "@/components/hero-section";
 import { HighlightedProducts } from "@/components/highlighted-products";
-import { Footer } from "@/components/footer";
 
-export default function RootPage() {
+export default async function RootPage() {
   return (
     <main className="bg-background">
-      <Header />
       <HeroSection />
       <HighlightedProducts />
-      <Footer />
     </main>
   );
 }

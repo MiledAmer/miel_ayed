@@ -1,9 +1,8 @@
 import { groq } from "next-sanity";
 import { client } from "@/sanity/lib/client";
 import type { Product } from "./types/products";
-import type { Category } from "./types/categories";
-// import imageUrlBuilder from "@sanity/image-url";
-
+import type { Category, Subcategory } from "./types/categories";
+import type { Locales } from "@/i18n/request";
 
 interface ProductFilters {
   categoryId?: string;
@@ -21,7 +20,7 @@ interface PaginatedProducts {
 }
 
 export async function getFilteredProducts(
-  filters: ProductFilters = {}
+  filters: ProductFilters = {},
 ): Promise<PaginatedProducts> {
   const { categoryId, subcategoryIds, page = 1, pageSize = 12 } = filters;
 
@@ -94,4 +93,34 @@ export async function getCategoriesWithSubcategories(): Promise<Category[]> {
 
   const categories = await client.fetch<Category[]>(query);
   return categories;
+}
+
+export function getTranslatedCategoryName(
+  category: Category,
+  locale: string,
+): string {
+  switch (locale) {
+    case "fr":
+      return category.name.fr;
+    case "ar":
+      return category.name.ar;
+    case "en":
+    default:
+      return category.name.en;
+  }
+}
+
+export function getTranslatedSubcategoryName(
+  subcategory: Subcategory,
+  locale: string,
+): string {
+  switch (locale) {
+    case "fr":
+      return subcategory.name.fr;
+    case "ar":
+      return subcategory.name.ar;
+    case "en":
+    default:
+      return subcategory.name.en;
+  }
 }

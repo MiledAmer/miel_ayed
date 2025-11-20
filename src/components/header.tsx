@@ -6,14 +6,15 @@ import { ShoppingCart, ChevronDown } from "lucide-react";
 import { useCart } from "@/lib/store";
 import { MobileNav } from "./mobile-nav";
 import { Button } from "@/components/ui/button";
-import { CATEGORIES } from "@/lib/types";
 import { useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
 import { LanguageSelector } from "./language-selector";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
+import type { Category } from "@/sanity/types/categories";
+import { getTranslatedCategoryName, getTranslatedSubcategoryName } from "@/sanity/sanity-utils";
 
-export function Header() {
+export function Header({categories}: {categories : Category[]}) {
   const locale = useLocale();
   const t = useTranslations("HomePage.Header");
 
@@ -78,25 +79,25 @@ export function Header() {
 
               {/* Dropdown Menu */}
               <div className="border-border invisible absolute top-full left-0 mt-0 w-56 rounded-lg border bg-white py-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                {CATEGORIES.map((category) => (
-                  <div key={category.slug}>
+                {categories.map((category) => (
+                  <div key={category._id}>
                     <button
-                      onClick={() => handleCategoryClick(category.slug)}
+                      onClick={() => handleCategoryClick(category.slug.current)}
                       className="text-foreground hover:bg-muted hover:text-accent w-full px-4 py-2 text-left text-sm font-medium transition-colors"
                     >
-                      {category.name}
+                      {getTranslatedCategoryName(category, locale)}
                     </button>
-                    {category.subcategories.length > 0 && (
+                    {category.subcategories && category.subcategories.length > 0 && (
                       <div className="bg-muted/30 pl-4">
                         {category.subcategories.map((sub) => (
                           <button
-                            key={sub}
+                            key={sub._id}
                             onClick={() =>
-                              handleSubcategoryClick(category.slug, sub)
+                              handleSubcategoryClick(category.slug.current, sub.slug.current)
                             }
                             className="text-muted-foreground hover:text-accent w-full px-4 py-1 text-left text-xs transition-colors"
                           >
-                            {sub}
+                            {getTranslatedSubcategoryName(sub, locale)}
                           </button>
                         ))}
                       </div>

@@ -1,6 +1,4 @@
 import { notFound } from "next/navigation";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { ProductDetail } from "@/components/product-detail";
 import { Button } from "@/components/ui/button";
 import { mockProducts } from "@/lib/mock-data";
@@ -23,8 +21,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <Suspense>
       <main>
-        <Header />
-
         <div className="container mx-auto px-4 py-12">
           {/* Back Button */}
           <Link href="/products">
@@ -37,8 +33,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Product Detail */}
           <ProductDetail product={product} />
         </div>
-
-        <Footer />
       </main>
     </Suspense>
   );

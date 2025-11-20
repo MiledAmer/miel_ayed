@@ -20,5 +20,5 @@ export type Category = {
   slug: {
     current: string;
   };
-  subcategories: Subcategory[];
+  subcategories: Subcategory[] | null;
 }

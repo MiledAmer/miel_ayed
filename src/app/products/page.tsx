@@ -2,8 +2,6 @@
 
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { ProductCard } from "@/components/product-card";
 import { ProductsFilters } from "@/components/products-filters";
 import { mockProducts } from "@/lib/mock-data";
@@ -37,8 +35,6 @@ export default function ProductsPage() {
 
   return (
     <main className={isRTL ? "rtl" : "ltr"} dir={isRTL ? "rtl" : "ltr"}>
-      <Header />
-
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-primary mb-2 text-3xl font-bold text-balance md:text-4xl">
           {t("products")}
@@ -71,8 +67,6 @@ export default function ProductsPage() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </main>
   );
 }

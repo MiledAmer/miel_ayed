@@ -1,34 +1,33 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { Header } from '@/components/header'
-import { Footer } from '@/components/footer'
-import { CartItemRow } from '@/components/cart-item-row'
-import { Button } from '@/components/ui/button'
-import { useCart } from '@/lib/store'
-import { ShoppingBag, ArrowRight } from 'lucide-react'
-import { useLocale, useTranslations } from 'next-intl'
+import Link from "next/link";
+import { CartItemRow } from "@/components/cart-item-row";
+import { Button } from "@/components/ui/button";
+import { useCart } from "@/lib/store";
+import { ShoppingBag, ArrowRight } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function CartPage() {
-  const { items, getTotal } = useCart()
-    
+  const { items, getTotal } = useCart();
 
-  const t = useTranslations('CartPage')
-  const locale = useLocale()
-  const isRTL = locale === 'ar'
-  const total = getTotal()
+  const t = useTranslations("CartPage");
+  const locale = useLocale();
+  const isRTL = locale === "ar";
+  const total = getTotal();
 
   return (
-    <main className={isRTL ? 'rtl' : 'ltr'} dir={isRTL ? 'rtl' : 'ltr'}>
-      <Header />
-
+    <main className={isRTL ? "rtl" : "ltr"} dir={isRTL ? "rtl" : "ltr"}>
       <div className="container mx-auto px-4 py-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-primary mb-8">{t("cart")}</h1>
+        <h1 className="text-primary mb-8 text-3xl font-bold md:text-4xl">
+          {t("cart")}
+        </h1>
 
         {items.length === 0 ? (
-          <div className="text-center py-16">
-            <ShoppingBag className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-foreground mb-2">{t("empty_cart")}</h2>
+          <div className="py-16 text-center">
+            <ShoppingBag className="text-muted-foreground mx-auto mb-4 h-16 w-16" />
+            <h2 className="text-foreground mb-2 text-2xl font-bold">
+              {t("empty_cart")}
+            </h2>
             <p className="text-muted-foreground mb-8">{t("empty_desc")}</p>
             <Link href="/products">
               <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">
@@ -37,10 +36,10 @@ export default function CartPage() {
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {/* Cart Items */}
             <div className="lg:col-span-2">
-              <div className="bg-card border border-border rounded-lg p-6">
+              <div className="bg-card border-border rounded-lg border p-6">
                 <div className="space-y-4">
                   {items.map((item) => (
                     <CartItemRow key={item.product.id} item={item} />
@@ -51,36 +50,42 @@ export default function CartPage() {
 
             {/* Cart Summary */}
             <div className="lg:col-span-1">
-              <div className="bg-card border border-border rounded-lg p-6 sticky top-24 h-fit">
-                <h2 className="text-lg font-bold text-foreground mb-6">{t("order_summary")}</h2>
+              <div className="bg-card border-border sticky top-24 h-fit rounded-lg border p-6">
+                <h2 className="text-foreground mb-6 text-lg font-bold">
+                  {t("order_summary")}
+                </h2>
 
-                <div className="space-y-4 pb-6 border-b border-border">
-                  <div className="flex justify-between text-muted-foreground">
+                <div className="border-border space-y-4 border-b pb-6">
+                  <div className="text-muted-foreground flex justify-between">
                     <span>{t("subtotal")}</span>
-                    <span>{total.toFixed(2)} {t("price")}</span>
+                    <span>
+                      {total.toFixed(2)} {t("price")}
+                    </span>
                   </div>
-                  <div className="flex justify-between text-muted-foreground text-sm">
+                  <div className="text-muted-foreground flex justify-between text-sm">
                     <span>{t("shipping")}</span>
                     <span>{t("free")}</span>
                   </div>
                 </div>
 
-                <div className="flex justify-between mb-6 pt-6">
-                  <span className="font-bold text-foreground">{t("total")}</span>
-                  <span className="text-2xl font-bold text-accent">
+                <div className="mb-6 flex justify-between pt-6">
+                  <span className="text-foreground font-bold">
+                    {t("total")}
+                  </span>
+                  <span className="text-accent text-2xl font-bold">
                     {total.toFixed(2)} {t("price")}
                   </span>
                 </div>
 
                 <Button
                   disabled
-                  className="w-full bg-accent/50 text-accent-foreground cursor-not-allowed"
+                  className="bg-accent/50 text-accent-foreground w-full cursor-not-allowed"
                 >
                   {t("checkout")}
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
 
-                <p className="text-xs text-muted-foreground text-center mt-4">
+                <p className="text-muted-foreground mt-4 text-center text-xs">
                   {t("checkout_integration_coming_soon")}
                 </p>
               </div>
@@ -88,8 +93,6 @@ export default function CartPage() {
           </div>
         )}
       </div>
-
-      <Footer />
     </main>
-  )
+  );
 }

@@ -1,7 +1,5 @@
 "use client";
 
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
@@ -37,8 +35,6 @@ export default function ContactPage() {
 
   return (
     <main className={isRTL ? "rtl" : "ltr"} dir={isRTL ? "rtl" : "ltr"}>
-      <Header />
-
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="mb-16 text-center">
@@ -133,7 +129,7 @@ export default function ContactPage() {
             <div className="space-y-8">
               {/* Phone */}
               <div className="flex gap-4">
-                <div className="flex-shrink-0">
+                <div>
                   <div className="bg-accent/10 rounded-full p-3">
                     <Phone className="text-accent h-6 w-6" />
                   </div>
@@ -153,7 +149,7 @@ export default function ContactPage() {
 
               {/* Email */}
               <div className="flex gap-4">
-                <div className="flex-shrink-0">
+                <div>
                   <div className="bg-accent/10 rounded-full p-3">
                     <Mail className="text-accent h-6 w-6" />
                   </div>
@@ -173,7 +169,7 @@ export default function ContactPage() {
 
               {/* Location */}
               <div className="flex gap-4">
-                <div className="flex-shrink-0">
+                <div>
                   <div className="bg-accent/10 rounded-full p-3">
                     <MapPin className="text-accent h-6 w-6" />
                   </div>
@@ -188,7 +184,7 @@ export default function ContactPage() {
 
               {/* Hours */}
               <div className="flex gap-4">
-                <div className="flex-shrink-0">
+                <div>
                   <div className="bg-accent/10 rounded-full p-3">
                     <Phone className="text-accent h-6 w-6" />
                   </div>
@@ -204,8 +200,6 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </main>
   );
 }
