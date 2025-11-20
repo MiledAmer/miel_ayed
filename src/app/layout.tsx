@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
 // import { Analytics } from '@vercel/analytics/next'
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
-import { NextIntlClientProvider } from "next-intl";
 import localFont from "next/font/local";
 import { getLocale } from "next-intl/server";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-import { getCategoriesWithSubcategories } from "@/sanity/sanity-utils";
 
 const myFont = localFont({
   src: "./29LT-Azer-Bold.otf",
@@ -49,25 +44,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const locale = await getLocale();
-  const categories = await getCategoriesWithSubcategories();
   return (
     <html lang={locale} className={myFont.className}>
-      <body className={`font-sans antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange={false}
-        >
-          <NextIntlClientProvider>
-            <Header categories={categories} />
-            {children}
-            <Footer />
-          </NextIntlClientProvider>
-
-          {/* <Analytics /> */}
-        </ThemeProvider>
-      </body>
+      <body className={`font-sans antialiased`}>{children}</body>
     </html>
   );
 }
