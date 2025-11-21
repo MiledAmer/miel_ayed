@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import { ProductDetail } from "@/components/product-detail";
 import { Button } from "@/components/ui/button";
-import { mockProducts } from "@/lib/mock-data";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Suspense } from "react";
+import { getProductByID } from "@/sanity/sanity-utils";
 
 interface ProductPageProps {
   params: Promise<{ id: string }>;
@@ -12,7 +12,7 @@ interface ProductPageProps {
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = await params;
-  const product = mockProducts.find((p) => p.id === id);
+  const product = await getProductByID(id);
 
   if (!product) {
     notFound();

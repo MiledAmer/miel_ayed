@@ -12,9 +12,13 @@ import { LanguageSelector } from "./language-selector";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import type { Category } from "@/sanity/types/categories";
-import { getTranslatedCategoryName, getTranslatedSubcategoryName } from "@/sanity/sanity-utils";
+import {
+  getTranslatedCategoryName,
+  getTranslatedSubcategoryName,
+} from "@/sanity/sanity-utils";
+import { HeaderNavigation } from "./header-navigation";
 
-export function Header({categories}: {categories : Category[]}) {
+export function Header({ categories }: { categories: Category[] }) {
   const locale = useLocale();
   const t = useTranslations("HomePage.Header");
 
@@ -60,66 +64,7 @@ export function Header({categories}: {categories : Category[]}) {
           </Link>
 
           {/* Navigation Menu */}
-          <nav className="hidden flex-1 items-center gap-6 md:flex">
-            {/* Category Dropdown */}
-            <div className="group relative">
-              <button
-                className="text-foreground hover:text-accent flex items-center gap-1 font-medium transition-colors"
-                aria-haspopup="true"
-                aria-expanded={openDropdown === "categories"}
-                onClick={() =>
-                  setOpenDropdown(
-                    openDropdown === "categories" ? null : "categories",
-                  )
-                }
-              >
-                {t("products")}
-                <ChevronDown className="h-4 w-4" />
-              </button>
-
-              {/* Dropdown Menu */}
-              <div className="border-border invisible absolute top-full left-0 mt-0 w-56 rounded-lg border bg-white py-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                {categories.map((category) => (
-                  <div key={category._id}>
-                    <button
-                      onClick={() => handleCategoryClick(category.slug.current)}
-                      className="text-foreground hover:bg-muted hover:text-accent w-full px-4 py-2 text-left text-sm font-medium transition-colors"
-                    >
-                      {getTranslatedCategoryName(category, locale)}
-                    </button>
-                    {category.subcategories && category.subcategories.length > 0 && (
-                      <div className="bg-muted/30 pl-4">
-                        {category.subcategories.map((sub) => (
-                          <button
-                            key={sub._id}
-                            onClick={() =>
-                              handleSubcategoryClick(category.slug.current, sub.slug.current)
-                            }
-                            className="text-muted-foreground hover:text-accent w-full px-4 py-1 text-left text-xs transition-colors"
-                          >
-                            {getTranslatedSubcategoryName(sub, locale)}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <Link
-              href="/about"
-              className="text-foreground hover:text-accent font-medium transition-colors"
-            >
-              {t("about")}
-            </Link>
-            <Link
-              href="/contact"
-              className="text-foreground hover:text-accent font-medium transition-colors"
-            >
-              {t("contact")}
-            </Link>
-          </nav>
+          <HeaderNavigation categories={categories} />
 
           {/* Right Actions */}
           <div className="hidden items-center gap-3 sm:flex">

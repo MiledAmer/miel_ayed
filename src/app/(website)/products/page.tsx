@@ -1,37 +1,26 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
-import { useMemo } from "react";
 import { ProductCard } from "@/components/product-card";
 import { ProductsFilters } from "@/components/products-filters";
-import { mockProducts } from "@/lib/mock-data";
-import { useLocale, useTranslations } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
+import { getCategoriesWithSubcategories, getFilteredProducts } from "@/sanity/sanity-utils";
 
-export default function ProductsPage() {
-  const t = useTranslations("ProductsPage");
-  const locale = useLocale();
+export default async function ProductsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category: string; subcategory: string }>;
+}) {
+  const t = await getTranslations("ProductsPage");
+  const locale = await getLocale();
   const isRTL = locale === "ar";
-
-  const searchParams = useSearchParams();
-
-  const selectedCategory = searchParams.get("category");
-  const selectedSubcategory = searchParams.get("subcategory");
-
-  const filteredProducts = useMemo(() => {
-    let result = mockProducts;
-
-    if (selectedCategory) {
-      result = result.filter((p) => p.category === selectedCategory);
-    }
-
-    if (selectedSubcategory) {
-      result = result.filter(
-        (p) => p.subcategory === decodeURIComponent(selectedSubcategory),
-      );
-    }
-
-    return result;
-  }, [selectedCategory, selectedSubcategory]);
+  
+  const { category, subcategory } = await searchParams;
+  
+  const categories = await getCategoriesWithSubcategories();
+  const filteredProducts = await getFilteredProducts({
+    categorySlug: category,
+    subcategorySlug: subcategory,
+    page: 1,
+    pageSize: 100,
+  });
 
   return (
     <main className={isRTL ? "rtl" : "ltr"} dir={isRTL ? "rtl" : "ltr"}>
@@ -40,21 +29,21 @@ export default function ProductsPage() {
           {t("products")}
         </h1>
         <p className="text-muted-foreground mb-8">
-          {t("showing")} {filteredProducts.length} {t("products_count")}
+          {t("showing")} {filteredProducts.products.length} {t("products_count")}
         </p>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
           {/* Filters Sidebar - Hidden on mobile */}
           <div className="hidden lg:block">
-            <ProductsFilters />
+            <ProductsFilters categories={categories} />
           </div>
 
           {/* Products Grid */}
           <div className="lg:col-span-3">
-            {filteredProducts.length > 0 ? (
+            {filteredProducts.products.length > 0 ? (
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                {filteredProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+                {filteredProducts.products.map((product) => (
+                  <ProductCard key={product._id} product={product} />
                 ))}
               </div>
             ) : (

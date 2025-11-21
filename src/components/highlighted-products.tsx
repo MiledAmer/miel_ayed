@@ -1,16 +1,13 @@
 "use client";
 
+import type { Product } from "@/sanity/types/products";
 import { ProductCard } from "./product-card";
-import { mockProducts } from "@/lib/mock-data";
 import { useLocale, useTranslations } from "next-intl";
 
-export function HighlightedProducts() {
+export function HighlightedProducts({ products }: { products: Product[] }) {
   const t = useTranslations("HomePage.HighlightedProducts");
-  const locale  = useLocale();
+  const locale = useLocale();
   const isRTL = locale === "ar";
-
-  // Show first 6 products as highlighted
-  const featured = mockProducts.slice(0, 6);
 
   return (
     <section
@@ -29,8 +26,8 @@ export function HighlightedProducts() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featured.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
           ))}
         </div>
       </div>

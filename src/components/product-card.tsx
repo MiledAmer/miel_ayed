@@ -4,8 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/lib/store";
 import { Button } from "@/components/ui/button";
-import type { Product } from "@/lib/types";
 import { useLocale, useTranslations } from "next-intl";
+import type { Product } from "@/sanity/types/products";
+import { urlFor } from "@/sanity/sanity-utils";
 
 interface ProductCardProps {
   product: Product;
@@ -21,15 +22,15 @@ export function ProductCard({ product }: ProductCardProps) {
   const { addItem } = useCart();
 
   const getName = () => {
-    if (locale === "en") return product.nameEn;
-    if (locale === "ar") return product.nameAr;
-    return product.nameFr;
+    if (locale === "en") return product.title.en;
+    if (locale === "ar") return product.title.ar;
+    return product.title.fr;
   };
 
   const getDescription = () => {
-    if (locale === "en") return product.descriptionEn;
-    if (locale === "ar") return product.descriptionAr;
-    return product.descriptionFr;
+    if (locale === "en") return product.description.en;
+    if (locale === "ar") return product.description.ar;
+    return product.description.fr;
   };
 
   return (
@@ -40,10 +41,10 @@ export function ProductCard({ product }: ProductCardProps) {
       dir={isRTL ? "rtl" : "ltr"}
     >
       {/* Product Image */}
-      <Link href={`/product/${product.id}`}>
+      <Link href={`/product/${product._id}`}>
         <div className="bg-muted relative h-48 overflow-hidden">
           <Image
-            src={product.image || "/placeholder.svg"}
+            src={urlFor(product.image).url() || "/placeholder.svg"}
             alt={getName()}
             fill
             className="object-cover transition-transform duration-300 hover:scale-105"
@@ -53,7 +54,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
       {/* Product Info */}
       <div className="p-4">
-        <Link href={`/product/${product.id}`}>
+        <Link href={`/product/${product._id}`}>
           <h3 className="text-foreground hover:text-accent line-clamp-2 font-bold transition-colors">
             {getName()}
           </h3>
@@ -66,11 +67,11 @@ export function ProductCard({ product }: ProductCardProps) {
         {/* Price and Button */}
         <div className="border-border mt-4 flex items-center justify-between border-t pt-4">
           <div className="text-accent text-lg font-bold">
-            {product.price.toFixed(2)} {t("price")}
+            {product.variants[0]?.price.toFixed(2)} {t("price")}
           </div>
           <Button
             size="sm"
-            onClick={() => addItem(product, 1)}
+            // onClick={() => addItem(product, 1)}
             className="bg-accent hover:bg-accent/90 text-accent-foreground"
           >
             {t("add_to_cart")}

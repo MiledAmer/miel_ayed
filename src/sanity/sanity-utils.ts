@@ -2,11 +2,12 @@ import { groq } from "next-sanity";
 import { client } from "@/sanity/lib/client";
 import type { Product } from "./types/products";
 import type { Category, Subcategory } from "./types/categories";
-import type { Locales } from "@/i18n/request";
+import imageUrlBuilder from "@sanity/image-url";
+import type { ImageUrlBuilder } from "sanity";
 
 interface ProductFilters {
-  categoryId?: string;
-  subcategoryIds?: string[];
+  categorySlug?: string;
+  subcategorySlug?: string;
   page?: number;
   pageSize?: number;
 }
@@ -22,7 +23,7 @@ interface PaginatedProducts {
 export async function getFilteredProducts(
   filters: ProductFilters = {},
 ): Promise<PaginatedProducts> {
-  const { categoryId, subcategoryIds, page = 1, pageSize = 12 } = filters;
+  const { categorySlug, subcategorySlug, page = 1, pageSize = 12 } = filters;
 
   // Calculate pagination
   const start = (page - 1) * pageSize;
@@ -31,15 +32,14 @@ export async function getFilteredProducts(
   // Build filter conditions
   let filterConditions = "";
 
-  if (categoryId) {
+  if (categorySlug) {
     // Filter by category (products that have subcategories belonging to this category)
-    filterConditions += ` && count((subcategories[]->_id)[@ in *[_type == "category" && _id == "${categoryId}"].subcategories[]->_id]) > 0`;
+    filterConditions += ` && count((subcategories[]->_id)[@ in *[_type == "category" && slug.current == "${categorySlug}"].subcategories[]->_id]) > 0`;
   }
 
-  if (subcategoryIds && subcategoryIds.length > 0) {
+  if (subcategorySlug) {
     // Filter by specific subcategories
-    const subcategoryFilter = subcategoryIds.map((id) => `"${id}"`).join(", ");
-    filterConditions += ` && count((subcategories[]->_id)[@ in [${subcategoryFilter}]]) > 0`;
+    filterConditions += ` && count((subcategories[]->_id)[@ in *[_type == "subcategory" && slug.current == "${subcategorySlug}"]._id]) > 0`;
   }
 
   // Query for products with filters
@@ -94,6 +94,24 @@ export async function getCategoriesWithSubcategories(): Promise<Category[]> {
   const categories = await client.fetch<Category[]>(query);
   return categories;
 }
+export async function getProductByID(id: string): Promise<Product | null> {
+  const query = groq`
+    *[_type == "product" && _id == $id][0] {
+      _id,
+      title,
+      description,
+      variants,
+      image,
+      subcategories[]-> {
+        _id,
+        name
+      }
+    }
+  `;
+
+  const product = await client.fetch<Product | null>(query, { id });
+  return product;
+}
 
 export function getTranslatedCategoryName(
   category: Category,
@@ -123,4 +141,10 @@ export function getTranslatedSubcategoryName(
     default:
       return subcategory.name.en;
   }
+}
+
+// eslint-disable-next-line
+export function urlFor(source: any): ImageUrlBuilder {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  return imageUrlBuilder(client).image(source);
 }

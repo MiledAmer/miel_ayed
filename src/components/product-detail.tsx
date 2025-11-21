@@ -5,8 +5,9 @@ import { useCart } from "@/lib/store";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { useState } from "react";
-import type { Product } from "@/lib/types";
 import { useLocale, useTranslations } from "next-intl";
+import type { Product } from "@/sanity/types/products";
+import { urlFor } from "@/sanity/sanity-utils";
 
 interface ProductDetailProps {
   product: Product;
@@ -23,25 +24,25 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const [showSuccess, setShowSuccess] = useState(false);
 
   const getName = () => {
-    if (locale === "en") return product.nameEn;
-    if (locale === "ar") return product.nameAr;
-    return product.nameFr;
+    if (locale === "en") return product.title.en;
+    if (locale === "ar") return product.title.ar;
+    return product.title.fr;
   };
 
   const getDescription = () => {
-    if (locale === "en") return product.descriptionEn;
-    if (locale === "ar") return product.descriptionAr;
-    return product.descriptionFr;
+    if (locale === "en") return product.description.en;
+    if (locale === "ar") return product.description.ar;
+    return product.description.fr;
   };
 
-  const getCategoryName = () => {
-    if (locale === "en") return product.category;
-    if (locale === "ar") return product.category;
-    return product.category;
-  };
+  // const getCategoryName = () => {
+  //   if (locale === "en") return product.category;
+  //   if (locale === "ar") return product.category;
+  //   return product.category;
+  // };
 
   const handleAddToCart = () => {
-    addItem(product, quantity);
+    // addItem(product, quantity);
     setShowSuccess(true);
     setTimeout(() => setShowSuccess(false), 3000);
   };
@@ -59,7 +60,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
         <div className="flex items-center justify-center">
           <div className="bg-muted relative aspect-square w-full overflow-hidden rounded-lg">
             <Image
-              src={product.image || "/placeholder.svg"}
+              src={urlFor(product.image).url() || "/placeholder.svg"}
               alt={getName()}
               fill
               className="object-cover"
@@ -74,17 +75,17 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <h1 className="text-primary mb-2 text-3xl font-bold md:text-4xl">
               {getName()}
             </h1>
-            {product.subcategory && (
+            {/* {product.subcategory && (
               <p className="text-muted-foreground mb-2 text-sm">
                 {product.subcategory}
               </p>
-            )}
+            )} */}
           </div>
 
           {/* Price */}
           <div className="border-border mb-6 border-b pb-6">
             <div className="text-accent text-4xl font-bold">
-              {product.price.toFixed(2)}{" "}
+              {product.variants[0]?.price.toFixed(2)}{" "}
               <span className="text-2xl">{t("price")}</span>
             </div>
           </div>
@@ -105,7 +106,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               <span className="text-foreground font-semibold">
                 {t("category")}:
               </span>{" "}
-              {getCategoryName()}
+              {/* {getCategoryName()} */}
             </p>
           </div>
 
