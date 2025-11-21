@@ -28,7 +28,7 @@ export function HeaderNavigation({ categories }: { categories: Category[] }) {
     <NavigationMenu  viewport={isMobile} className="hidden md:flex">
       <NavigationMenuList className="flex-wrap">
         {categories.map((category) => (
-          <NavigationMenuItem key={category._id}>
+          <NavigationMenuItem key={category._id} >
             {category.subcategories == null ? (
               <NavigationMenuLink
                 asChild
@@ -40,7 +40,7 @@ export function HeaderNavigation({ categories }: { categories: Category[] }) {
               </NavigationMenuLink>
             ) : (
               <>
-                <NavigationMenuTrigger>
+                <NavigationMenuTrigger className="bg-transparent">
                   <Link href={`/products?category=${category.slug.current}`}>
                     {getTranslatedCategoryName(category, locale)}
                   </Link>

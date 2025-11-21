@@ -1,49 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { ShoppingCart, ChevronDown } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/lib/store";
 import { MobileNav } from "./mobile-nav";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
 import { LanguageSelector } from "./language-selector";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import type { Category } from "@/sanity/types/categories";
-import {
-  getTranslatedCategoryName,
-  getTranslatedSubcategoryName,
-} from "@/sanity/sanity-utils";
 import { HeaderNavigation } from "./header-navigation";
 
 export function Header({ categories }: { categories: Category[] }) {
   const locale = useLocale();
-  const t = useTranslations("HomePage.Header");
-
-  const router = useRouter();
   const { items } = useCart();
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const isRTL = locale === "ar";
 
   const cartCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
-  const handleCategoryClick = (categorySlug: string) => {
-    setOpenDropdown(null);
-    router.push(`/products?category=${categorySlug}`);
-  };
-
-  const handleSubcategoryClick = (
-    categorySlug: string,
-    subcategory: string,
-  ) => {
-    setOpenDropdown(null);
-    router.push(
-      `/products?category=${categorySlug}&subcategory=${encodeURIComponent(subcategory)}`,
-    );
-  };
 
   return (
     <header
@@ -83,7 +59,7 @@ export function Header({ categories }: { categories: Category[] }) {
             </Link>
             <ThemeToggle />
           </div>
-          <MobileNav />
+          <MobileNav categories={categories}/>
         </div>
       </div>
     </header>

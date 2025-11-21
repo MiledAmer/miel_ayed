@@ -10,23 +10,26 @@ import { ChevronDown, Menu, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { CATEGORIES } from "@/lib/types";
 import Image from "next/image";
 import { LanguageSelector } from "./language-selector";
 import { ThemeToggle } from "./theme-toggle";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import type { Category } from "@/sanity/types/categories";
+import {
+  getTranslatedCategoryName,
+  getTranslatedSubcategoryName,
+} from "@/sanity/sanity-utils";
 
-export function MobileNav() {
+export function MobileNav({ categories }: { categories: Category[] }) {
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
   const t = useTranslations("HomePage.Header");
-  // const locale = useLocale();
+  const locale = useLocale();
   // const isRTL = locale === "ar";
 
   const handleCategoryClick = (categorySlug: string) => {
-    setIsOpen(false);
+
     setExpandedCategory(null);
     router.push(`/products?category=${categorySlug}`);
   };
@@ -35,7 +38,7 @@ export function MobileNav() {
     categorySlug: string,
     subcategory: string,
   ) => {
-    setIsOpen(false);
+
     setExpandedCategory(null);
     router.push(
       `/products?category=${categorySlug}&subcategory=${encodeURIComponent(subcategory)}`,
@@ -44,11 +47,11 @@ export function MobileNav() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon" className="flex sm:hidden">
+        <Button variant="ghost" size="icon" className="flex sm:hidden">
           <Menu className="h-5 w-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="overflow-y-auto">
         {/* Sidebar Panel */}
         <SheetHeader>
           <Link href="/">
@@ -97,29 +100,35 @@ export function MobileNav() {
 
               {expandedCategory === "products" && (
                 <div className="bg-muted/30">
-                  {CATEGORIES.map((category) => (
-                    <div key={category.slug}>
+                  {categories.map((category) => (
+                    <div key={category.slug.current}>
                       <button
-                        onClick={() => handleCategoryClick(category.slug)}
+                        onClick={() =>
+                          handleCategoryClick(category.slug.current)
+                        }
                         className="text-foreground hover:text-accent hover:bg-muted/50 w-full px-8 py-3 text-left text-sm font-medium transition-colors"
                       >
-                        {category.name}
+                        {getTranslatedCategoryName(category, locale)}
                       </button>
-                      {category.subcategories.length > 0 && (
-                        <div className="pl-6">
-                          {category.subcategories.map((sub) => (
-                            <button
-                              key={sub}
-                              onClick={() =>
-                                handleSubcategoryClick(category.slug, sub)
-                              }
-                              className="text-muted-foreground hover:text-accent w-full px-8 py-2 text-left text-xs transition-colors"
-                            >
-                              {sub}
-                            </button>
-                          ))}
-                        </div>
-                      )}
+                      {category.subcategories &&
+                        category.subcategories.length > 0 && (
+                          <div className="pl-6">
+                            {category.subcategories.map((sub) => (
+                              <button
+                                key={sub._id}
+                                onClick={() =>
+                                  handleSubcategoryClick(
+                                    category.slug.current,
+                                    sub.slug.current,
+                                  )
+                                }
+                                className="text-muted-foreground hover:text-accent w-full px-8 py-2 text-left text-xs transition-colors"
+                              >
+                                {getTranslatedSubcategoryName(sub, locale)}
+                              </button>
+                            ))}
+                          </div>
+                        )}
                     </div>
                   ))}
                 </div>
