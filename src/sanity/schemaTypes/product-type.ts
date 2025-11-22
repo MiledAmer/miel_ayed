@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { VariantPreviewInput } from "../components/VariantPreviewInput";
 
 export default defineType({
   name: "product",
@@ -73,6 +74,29 @@ export default defineType({
       validation: (Rule) => Rule.required().min(1),
     }),
     defineField({
+      name: "selectedVariant",
+      title: "Selected variant",
+      type: "string",
+      description: "Select which variant to display as preview. Add variants first.",
+      components: {
+        input: VariantPreviewInput,
+      },
+      hidden: ({ document }) => {
+        const variants = document?.variants as Array<{ _key?: string }> | undefined;
+        return !variants || variants.length === 0;
+      },
+      validation: (Rule) =>
+        Rule.custom((selectedKey, context) => {
+          if (!selectedKey) return true;
+          const variants = (context.document?.variants as Array<{ _key?: string }>) ?? [];
+          const variantExists = variants.some((v) => v._key === selectedKey);
+          if (!variantExists) {
+            return "Please select a valid variant.";
+          }
+          return true;
+        }),
+    }),
+    defineField({
       name: "image",
       title: "Product Image",
       type: "image",
@@ -89,13 +113,62 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "subcategories",
-      title: "Subcategories",
-      type: "array",
-      of: [{ type: "reference", to: [{ type: "subcategory" }] }],
-      validation: (Rule) => {
-        return Rule.required().min(1) && Rule.unique();
+      name: "category",
+      title: "Category",
+      type: "reference",
+      to: [{ type: "category" }],
+      validation: (Rule) => Rule.required(),
+      description:
+        "Clear this field to select a different category. Clear subcategory to change the category.",
+      readOnly: ({ document }) => !!document?.subcategory,
+      options: {
+        disableNew: true,
       },
+    }),
+    defineField({
+      name: "subcategory",
+      title: "Subcategory",
+      type: "reference",
+      to: [{ type: "subcategory" }],
+      hidden: ({ document }) => !document?.category,
+      options: {
+        filter: ({ document }) => {
+          const category = document?.category as { _ref?: string } | undefined;
+          const categoryId = category?._ref;
+          if (!categoryId) {
+            return { filter: "false" };
+          }
+          return {
+            filter:
+              "_id in *[_type == 'category' && _id == $categoryId][0].subcategories[]._ref",
+            params: { categoryId },
+          };
+        },
+      },
+      validation: (Rule) =>
+        Rule.custom(async (subcategory, context) => {
+          if (!subcategory) return true;
+
+          const category = (
+            context.document?.category as { _ref?: string } | undefined
+          )?._ref;
+          if (!category) return true;
+
+          const client = context.getClient({ apiVersion: "2023-01-01" });
+          const result = await client.fetch<string[]>(
+            `*[_type == 'category' && _id == $categoryId][0].subcategories[]._ref`,
+            { categoryId: category },
+          );
+
+          const subcategoryId = (subcategory as { _ref?: string })?._ref;
+          if (result?.includes(subcategoryId ?? "")) {
+            return true;
+          }
+
+          return "This subcategory does not belong to the selected category. Please clear and select a valid subcategory.";
+        }),
+      description:
+        "Select a category first to choose a subcategory. If you change category, clear this field and select again.",
     }),
   ],
   preview: {

@@ -13,18 +13,34 @@ export type Product = {
     ar: string;
   };
   variants: ProductVariant[];
+  selectedVariant?: string;
   image: SanityImageSource;
-  subcategories: Array<{
+  category: {
     _id: string;
     name: {
       en: string;
       fr: string;
       ar: string;
     };
-  }>;
+    slug: {
+      current: string;
+    };
+  };
+  subcategory?: {
+    _id: string;
+    name: {
+      en: string;
+      fr: string;
+      ar: string;
+    };
+    slug: {
+      current: string;
+    };
+  };
 }
 
 export type ProductVariant = {
+  _key?: string;
   weight: string;
   price: number;
   availability: boolean;
