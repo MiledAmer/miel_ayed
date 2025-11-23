@@ -97,5 +97,27 @@
     "sustainability_desc": "تدعم ممارسات تربية النحل لدينا الحفاظ على البيئة وصحة تجمع النحل.",
     "community": "المجتمع",
     "community_desc": "نعمل بتعاون وثيق مع مربي النحل المحليين وندعم المجتمعات التي نحصل منها على المنتجات."
+  },
+  "Checkout": {
+    "title": "الدفع",
+    "shipping_details": "تفاصيل الشحن",
+    "order_summary": "ملخص الطلب",
+    "total": "الإجمالي",
+    "currency": "دينار",
+    "name": "الاسم الكامل",
+    "name_placeholder": "فلان الفلاني",
+    "email": "البريد الإلكتروني",
+    "email_placeholder": "fulan@example.com",
+    "optional": "اختياري",
+    "phone": "رقم الهاتف",
+    "phone_placeholder": "+216 12 345 678",
+    "address": "عنوان الشحن",
+    "address_placeholder": "العنوان، المدينة، الرمز البريدي",
+    "place_order": "إتمام الطلب",
+    "processing": "جاري المعالجة...",
+    "cart_empty": "سلتك فارغة",
+    "order_success": "تم الطلب بنجاح!",
+    "success_desc": "شكراً لشرائك. تم استلام طلبك وجاري معالجته.",
+    "order_error": "فشل في إتمام الطلب. يرجى المحاولة مرة أخرى."
   }
 }

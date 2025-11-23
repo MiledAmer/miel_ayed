@@ -5,8 +5,9 @@ import Link from 'next/link'
 import { useCart } from '@/lib/store'
 import { Button } from '@/components/ui/button'
 import { Trash2 } from 'lucide-react'
-import type { CartItem } from '@/lib/types'
+import type { CartItem } from '@/lib/store'
 import { useLocale, useTranslations } from 'next-intl'
+import { urlFor } from '@/sanity/sanity-utils'
 
 interface CartItemRowProps {
   item: CartItem
@@ -21,12 +22,12 @@ export function CartItemRow({ item }: CartItemRowProps) {
 
   const { updateQuantity, removeItem } = useCart()
   const getName = () => {
-    if (locale === 'en') return item.product.nameEn
-    if (locale === 'ar') return item.product.nameAr
-    return item.product.nameFr
+    if (locale === 'en') return item.product.title.en
+    if (locale === 'ar') return item.product.title.ar
+    return item.product.title.fr
   }
 
-  const subtotal = item.product.price * item.quantity
+  const subtotal = item.variant.price * item.quantity
 
   return (
     <div
@@ -36,10 +37,10 @@ export function CartItemRow({ item }: CartItemRowProps) {
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       {/* Product Image */}
-      <Link href={`/product/${item.product.id}`}>
+      <Link href={`/product/${item.product._id}`}>
         <div className="relative w-24 h-24 bg-muted rounded-lg overflow-hidden">
           <Image
-            src={item.product.image || "/placeholder.svg"}
+            src={urlFor(item.product.image).url() || "/placeholder.svg"}
             alt={getName()}
             fill
             className="object-cover hover:scale-105 transition-transform"
@@ -50,20 +51,20 @@ export function CartItemRow({ item }: CartItemRowProps) {
       {/* Product Info */}
       <div className="flex-1 flex flex-col justify-between">
         <div>
-          <Link href={`/product/${item.product.id}`}>
+          <Link href={`/product/${item.product._id}`}>
             <h3 className="font-semibold text-foreground hover:text-accent transition-colors">
               {getName()}
             </h3>
           </Link>
           <p className="text-sm text-muted-foreground">
-            {item.product.price.toFixed(2)} {t('price')}
+            {item.variant.weight} - {item.variant.price.toFixed(2)} {t('price')}
           </p>
         </div>
 
         {/* Quantity Controls */}
         <div className="flex items-center gap-2">
           <button
-            onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
+            onClick={() => updateQuantity(item.id, item.quantity - 1)}
             className="px-2 py-1 text-sm font-medium text-foreground bg-muted hover:bg-border rounded transition-colors"
             aria-label="Decrease quantity"
           >
@@ -73,7 +74,7 @@ export function CartItemRow({ item }: CartItemRowProps) {
             {item.quantity}
           </span>
           <button
-            onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
+            onClick={() => updateQuantity(item.id, item.quantity + 1)}
             className="px-2 py-1 text-sm font-medium text-foreground bg-muted hover:bg-border rounded transition-colors"
             aria-label="Increase quantity"
           >
@@ -94,7 +95,7 @@ export function CartItemRow({ item }: CartItemRowProps) {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => removeItem(item.product.id)}
+          onClick={() => removeItem(item.id)}
           className="text-destructive hover:bg-destructive/10 hover:text-destructive"
         >
           <Trash2 className="w-4 h-4" />

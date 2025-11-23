@@ -97,5 +97,27 @@
     "sustainability_desc": "Our beekeeping practices support environmental conservation and bee population health.",
     "community": "Community",
     "community_desc": "We work closely with local beekeepers and support the communities we source from."
+  },
+  "Checkout": {
+    "title": "Checkout",
+    "shipping_details": "Shipping Details",
+    "order_summary": "Order Summary",
+    "total": "Total",
+    "currency": "TND",
+    "name": "Full Name",
+    "name_placeholder": "John Doe",
+    "email": "Email",
+    "email_placeholder": "john@example.com",
+    "optional": "Optional",
+    "phone": "Phone Number",
+    "phone_placeholder": "+216 12 345 678",
+    "address": "Shipping Address",
+    "address_placeholder": "Street address, City, Postal code",
+    "place_order": "Place Order",
+    "processing": "Processing...",
+    "cart_empty": "Your cart is empty",
+    "order_success": "Order placed successfully!",
+    "success_desc": "Thank you for your purchase. Your order has been received and is being processed.",
+    "order_error": "Failed to place order. Please try again."
   }
 }

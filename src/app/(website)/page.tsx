@@ -7,7 +7,6 @@ export default async function RootPage() {
     page: 1,
     pageSize: 4,
   })
-  console.log("Highlighted products data:", data);
   return (
     <main className="bg-background">
       <HeroSection />

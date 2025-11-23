@@ -97,5 +97,27 @@
     "sustainability_desc": "Nos pratiques apicoles soutiennent la conservation de l'environnement et la santé de la population des abeilles.",
     "community": "Communauté",
     "community_desc": "Nous travaillons en étroite collaboration avec les apiculteurs locaux et soutenons les communautés d'où nous provenons."
+  },
+  "Checkout": {
+    "title": "Paiement",
+    "shipping_details": "Détails de livraison",
+    "order_summary": "Résumé de la commande",
+    "total": "Total",
+    "currency": "TND",
+    "name": "Nom complet",
+    "name_placeholder": "Jean Dupont",
+    "email": "Email",
+    "email_placeholder": "jean@exemple.com",
+    "optional": "Optionnel",
+    "phone": "Numéro de téléphone",
+    "phone_placeholder": "+216 12 345 678",
+    "address": "Adresse de livraison",
+    "address_placeholder": "Adresse, Ville, Code postal",
+    "place_order": "Passer la commande",
+    "processing": "Traitement...",
+    "cart_empty": "Votre panier est vide",
+    "order_success": "Commande passée avec succès !",
+    "success_desc": "Merci pour votre achat. Votre commande a été reçue et est en cours de traitement.",
+    "order_error": "Échec de la commande. Veuillez réessayer."
   }
 }

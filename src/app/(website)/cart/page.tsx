@@ -42,7 +42,7 @@ export default function CartPage() {
               <div className="bg-card border-border rounded-lg border p-6">
                 <div className="space-y-4">
                   {items.map((item) => (
-                    <CartItemRow key={item.product.id} item={item} />
+                    <CartItemRow key={item.id} item={item} />
                   ))}
                 </div>
               </div>
@@ -77,17 +77,14 @@ export default function CartPage() {
                   </span>
                 </div>
 
-                <Button
-                  disabled
-                  className="bg-accent/50 text-accent-foreground w-full cursor-not-allowed"
-                >
-                  {t("checkout")}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-
-                <p className="text-muted-foreground mt-4 text-center text-xs">
-                  {t("checkout_integration_coming_soon")}
-                </p>
+                <Link href="/checkout" className="w-full block">
+                  <Button
+                    className="bg-accent hover:bg-accent/90 text-accent-foreground w-full"
+                  >
+                    {t("checkout")}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

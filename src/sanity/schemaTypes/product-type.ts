@@ -1,10 +1,12 @@
 import { defineField, defineType } from "sanity";
 import { VariantPreviewInput } from "../components/VariantPreviewInput";
+import { PackageSearch } from "lucide-react";
 
 export default defineType({
   name: "product",
   title: "Product",
   type: "document",
+  icon: PackageSearch,
   fields: [
     defineField({
       name: "title",

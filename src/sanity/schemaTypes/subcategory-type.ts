@@ -1,9 +1,11 @@
+import { ChartColumnStacked } from 'lucide-react'
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'subcategory',
   title: 'Subcategory',
   type: 'document',
+  icon: ChartColumnStacked,
   fields: [
     defineField({
       name: 'name',

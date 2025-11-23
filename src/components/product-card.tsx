@@ -71,7 +71,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
           <Button
             size="sm"
-            // onClick={() => addItem(product, 1)}
+            onClick={() => addItem(product, product.selectedVariant, 1)}
             className="bg-accent hover:bg-accent/90 text-accent-foreground"
           >
             {t("add_to_cart")}

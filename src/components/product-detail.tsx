@@ -7,7 +7,8 @@ import { ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import type { Product, ProductVariant } from "@/sanity/types/products";
-import { urlFor } from "@/sanity/sanity-utils";
+import { getTranslatedCategoryName, urlFor } from "@/sanity/sanity-utils";
+import type { Category } from "@/sanity/types/categories";
 
 interface ProductDetailProps {
   product: Product;
@@ -38,16 +39,12 @@ export function ProductDetail({ product }: ProductDetailProps) {
     return product.description.fr;
   };
 
-  // const getCategoryName = () => {
-  //   if (locale === "en") return product.category;
-  //   if (locale === "ar") return product.category;
-  //   return product.category;
-  // };
-
   const handleAddToCart = () => {
-    // addItem(product, quantity);
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 3000);
+    if (selectedVariant) {
+      addItem(product, selectedVariant, quantity);
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+    }
   };
 
   const handleQuantityChange = (value: number) => {
@@ -140,7 +137,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               <span className="text-foreground font-semibold">
                 {t("category")}:
               </span>{" "}
-              {/* {getCategoryName()} */}
+              {getTranslatedCategoryName(product.category as Category, locale )}
             </p>
           </div>
 

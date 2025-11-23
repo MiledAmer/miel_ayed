@@ -5,6 +5,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { getCategoriesWithSubcategories } from "@/sanity/sanity-utils";
 import { NextIntlClientProvider } from "next-intl";
+import { Toaster } from "@/components/ui/sonner";
 
 export default async function RootLayout({
   children,
@@ -23,6 +24,7 @@ export default async function RootLayout({
         <Header categories={categories} />
         {children}
         <Footer />
+        <Toaster />
       </NextIntlClientProvider>
 
       {/* <Analytics /> */}
