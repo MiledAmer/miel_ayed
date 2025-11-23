@@ -67,7 +67,7 @@ export function ProductCard({ product }: ProductCardProps) {
         {/* Price and Button */}
         <div className="border-border mt-4 flex items-center justify-between border-t pt-4">
           <div className="text-accent text-lg font-bold">
-            {product.variants[0]?.price.toFixed(2)} {t("price")}
+            {product.selectedVariant.price.toFixed(2)} {t("price")}
           </div>
           <Button
             size="sm"

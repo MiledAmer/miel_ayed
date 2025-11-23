@@ -13,7 +13,7 @@ export type Product = {
     ar: string;
   };
   variants: ProductVariant[];
-  selectedVariant?: string;
+  selectedVariant: ProductVariant;
   image: SanityImageSource;
   category: {
     _id: string;

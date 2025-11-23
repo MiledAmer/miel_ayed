@@ -72,7 +72,10 @@
     "description": "الوصف",
     "category": "الفئة",
     "quantity": "الكمية",
-    "added": "تمت الإضافة إلى السلة!"
+    "added": "تمت الإضافة إلى السلة!",
+    "weight": "الوزن",
+    "inStock": "متوفر",
+    "outOfStock": "غير متوفر"
   },
   "ProductsFilters": {
     "filter": "تصفية",

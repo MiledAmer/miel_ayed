@@ -72,7 +72,10 @@
     "description": "Description",
     "category": "Catégorie",
     "quantity": "Quantité",
-    "added": "Ajouté au panier!"
+    "added": "Ajouté au panier!",
+    "weight": "Poids",
+    "inStock": "En stock",
+    "outOfStock": "Rupture de stock"
   },
   "ProductsFilters": {
     "filter": "Filtrer",

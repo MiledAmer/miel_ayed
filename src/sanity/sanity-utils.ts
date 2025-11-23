@@ -50,9 +50,16 @@ export async function getFilteredProducts(
       description,
       variants,
       image,
-      subcategories[]-> {
+      selectedVariant,
+      category-> {
         _id,
-        name
+        name,
+        slug
+      },
+      subcategory-> {
+        _id,
+        name,
+        slug
       }
     }
   `;
@@ -102,9 +109,16 @@ export async function getProductByID(id: string): Promise<Product | null> {
       description,
       variants,
       image,
-      subcategories[]-> {
+      selectedVariant,
+      category-> {
         _id,
-        name
+        name,
+        slug
+      },
+      subcategory-> {
+        _id,
+        name,
+        slug
       }
     }
   `;

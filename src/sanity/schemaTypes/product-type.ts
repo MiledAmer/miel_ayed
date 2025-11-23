@@ -75,24 +75,54 @@ export default defineType({
     }),
     defineField({
       name: "selectedVariant",
-      title: "Selected variant",
-      type: "string",
-      description: "Select which variant to display as preview. Add variants first.",
-      components: {
+      title: "Preview Variant",
+      type: "object",
+      description:
+        "Select which variant to display as preview. Add variants first.",
+      fields: [
+        {
+          name: "weight",
+          title: "Weight",
+          type: "string",
+          placeholder: "e.g., 500g, 1kg",
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "price",
+          title: "Price",
+          type: "number",
+          validation: (Rule) => Rule.required().positive(),
+        },
+        {
+          name: "availability",
+          title: "Availability",
+          type: "boolean",
+          initialValue: true,
+        },
+      ],
+      components:{
         input: VariantPreviewInput,
       },
       hidden: ({ document }) => {
-        const variants = document?.variants as Array<{ _key?: string }> | undefined;
+        const variants = document?.variants as
+          | Array<{ _key?: string }>
+          | undefined;
         return !variants || variants.length === 0;
       },
       validation: (Rule) =>
-        Rule.custom((selectedKey, context) => {
-          if (!selectedKey) return true;
+        Rule.required().custom((selectedVariant, context) => {
+          // if (!selectedVariant) return true;
+          
+          const variantKey = (selectedVariant as { _key?: string })?._key;
+          if (!variantKey) return "Selected variant must have a valid key.";
+          
           const variants = (context.document?.variants as Array<{ _key?: string }>) ?? [];
-          const variantExists = variants.some((v) => v._key === selectedKey);
+          const variantExists = variants.some((v) => v._key === variantKey);
+          
           if (!variantExists) {
-            return "Please select a valid variant.";
+            return "Selected variant does not exist in the variants list. Please select a valid variant.";
           }
+          
           return true;
         }),
     }),

@@ -72,7 +72,10 @@
     "description": "Description",
     "category": "Category",
     "quantity": "Quantity",
-    "added": "Added to cart!"
+    "added": "Added to cart!",
+    "weight": "Weight",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock"
   },
   "ProductsFilters": {
     "filter": "Filter",

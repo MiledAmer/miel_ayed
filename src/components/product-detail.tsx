@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import type { Product } from "@/sanity/types/products";
+import type { Product, ProductVariant } from "@/sanity/types/products";
 import { urlFor } from "@/sanity/sanity-utils";
 
 interface ProductDetailProps {
@@ -22,6 +22,9 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [selectedVariant, setSelectedVariant] = useState<ProductVariant>(
+    product.selectedVariant || product.variants?.[0]
+  );
 
   const getName = () => {
     if (locale === "en") return product.title.en;
@@ -82,11 +85,42 @@ export function ProductDetail({ product }: ProductDetailProps) {
             )} */}
           </div>
 
+          {/* Variants */}
+          {product.variants && product.variants.length > 0 && (
+            <div className="mb-6">
+              <label className="text-sm font-medium text-muted-foreground mb-2 block">
+                {t("weight")}
+              </label>
+              <div className="flex flex-wrap gap-3">
+                {product.variants.map((variant) => (
+                  <button
+                    key={variant._key}
+                    onClick={() => setSelectedVariant(variant)}
+                    className={`rounded-md border px-4 py-2 text-sm font-medium transition-all ${
+                      selectedVariant?._key === variant._key
+                        ? "bg-primary text-primary-foreground border-primary ring-2 ring-primary/20"
+                        : "bg-background text-foreground border-input hover:bg-accent hover:text-accent-foreground"
+                    }`}
+                  >
+                    {variant.weight}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Price */}
           <div className="border-border mb-6 border-b pb-6">
-            <div className="text-accent text-4xl font-bold">
-              {product.variants[0]?.price.toFixed(2)}{" "}
-              <span className="text-2xl">{t("price")}</span>
+            <div className="flex flex-col gap-2">
+              <div className="text-accent text-4xl font-bold">
+                {selectedVariant?.price ? selectedVariant.price.toFixed(2) : "0.00"}{" "}
+                <span className="text-2xl">{t("price")}</span>
+              </div>
+              {selectedVariant && (
+                <div className={`text-sm font-medium ${selectedVariant.availability ? 'text-green-600' : 'text-red-600'}`}>
+                  {selectedVariant.availability ? t("inStock") : t("outOfStock")}
+                </div>
+              )}
             </div>
           </div>
 
