@@ -40,7 +40,7 @@ export function CartItemRow({ item }: CartItemRowProps) {
       <Link href={`/product/${item.product._id}`}>
         <div className="relative w-24 h-24 bg-muted rounded-lg overflow-hidden">
           <Image
-            src={urlFor(item.product.image).url() || "/placeholder.svg"}
+            src={item.product.image?.asset ? urlFor(item.product.image)?.url() ?? "/organic-acacia-honey.jpg" : "/organic-acacia-honey.jpg"}
             alt={getName()}
             fill
             className="object-cover hover:scale-105 transition-transform"
