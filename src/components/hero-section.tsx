@@ -45,7 +45,7 @@ export function HeroSection() {
             </Button>
           </div>
 
-          <div className="text-secondary grid grid-cols-1 gap-4 pt-4 text-xs sm:grid-cols-3 sm:gap-8 sm:pt-8 sm:text-sm">
+          <div className="text-secondary hidden sm:grid grid-cols-1 gap-4 pt-4 text-xs sm:grid-cols-3 sm:gap-8 sm:pt-8 sm:text-sm">
             <div className="flex flex-col gap-1">
               <span className="font-semibold">{t("tag_1")}</span>
               <span className="text-secondary-foreground">
@@ -68,7 +68,7 @@ export function HeroSection() {
         </div>
 
         {/* Right Image */}
-        <div className="relative h-64 w-full sm:h-96 md:h-full md:min-h-[600px]">
+        <div className="hidden sm:block relative h-64 w-full sm:h-96 md:h-full md:min-h-[600px]">
           <Image
             src="/product.webp"
             alt="Honey jars with wooden dippers"
