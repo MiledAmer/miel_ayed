@@ -9,6 +9,12 @@ export default defineType({
   icon: PackageSearch,
   fields: [
     defineField({
+      name:"isTopSale",
+      title:"Is Top Sale",
+      type:"boolean",
+      initialValue:false,
+    }),
+    defineField({
       name: "title",
       title: "Title",
       type: "object",

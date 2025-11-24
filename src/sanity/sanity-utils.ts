@@ -7,6 +7,7 @@ import type { ImageUrlBuilder } from "sanity";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 interface ProductFilters {
+  isTopSale?: boolean;
   categorySlug?: string;
   subcategorySlug?: string;
   page?: number;
@@ -32,6 +33,10 @@ export async function getFilteredProducts(
 
   // Build filter conditions
   let filterConditions = "";
+
+  if (filters.isTopSale) {
+    filterConditions += ` && isTopSale == true`;
+  }
 
   if (categorySlug) {
     // Filter by category (products that have subcategories belonging to this category)
