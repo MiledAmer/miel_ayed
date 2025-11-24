@@ -11,10 +11,10 @@ export function Footer() {
 
   return (
     <footer
-      className={`bg-primary text-primary-foreground py-12 ${isRTL ? 'rtl' : 'ltr'}`}
+      className={`bg-secondary text-primary-foreground py-12 ${isRTL ? 'rtl' : 'ltr'}`}
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 text-primary">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* About Section */}
           <div>
@@ -63,7 +63,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 pt-8 text-center text-sm">
+        <div className="border-t border-secondary-foreground/20 pt-8 text-center text-sm">
           <p>{t("copyright")}</p>
         </div>
       </div>

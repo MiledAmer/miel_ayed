@@ -6,9 +6,17 @@
       "contact": "Contact"
     },
     "HeroSection": {
-      "title": "Miel Tunisien Haut de Gamme",
+      "title_1": "Miel Tunisien",
+      "title_2": "Haut de Gamme",
       "subtitle": "Découvrez le miel authentique et les produits apicoles de Tunisie. Biologique, pur et livré chez vous.",
-      "cta": "Explorer les Produits"
+      "cta": "Explorer les Produits",
+      "learn_more": "En savoir plus",
+      "tag_1": "100% Biologique",
+      "tag_1_message": "Certifié",
+      "tag_2": "Livraison Gratuite",
+      "tag_2_message": "À partir de 20DT",
+      "tag_3": "Production Locale",
+      "tag_3_message": "Tunisienne"
     },
     "HighlightedProducts": {
       "featured": "Produits Vedettes",

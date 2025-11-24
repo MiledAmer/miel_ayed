@@ -1,8 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import Image from "next/image";
+import Link from "next/link";
 
 export function HeroSection() {
   const t = useTranslations("HomePage.HeroSection");
@@ -10,40 +11,117 @@ export function HeroSection() {
 
   const isRTL = locale === "ar";
 
-  const scrollToProducts = () => {
-    const element = document.getElementById("highlighted-products");
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <section
-      className={`from-cream to-background relative px-4 py-20 ${
-        isRTL ? "rtl" : "ltr"
-      }`}
-      dir={isRTL ? "rtl" : "ltr"}
-    >
-      <div className="container mx-auto text-center">
-        <h1 className="text-primary mb-6 text-4xl font-bold text-balance md:text-5xl">
-          {t("title")}
-        </h1>
+    <>
+      <section
+        className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 py-8 sm:gap-12 sm:px-6 sm:py-16 md:grid md:grid-cols-2 md:py-24"
+        dir={isRTL ? "rtl" : "ltr"}
+      >
+        {/* Left Content */}
+        <div className="flex w-full flex-col gap-6 sm:gap-8">
+          <div className="space-y-3 sm:space-y-4">
+            <h1 className="text-secondary font-serif text-4xl leading-tight font-bold text-balance sm:text-5xl md:text-6xl">
+              {t("title_1")}{" "}
+              <span className="text-primary block">{t("title_2")}</span>
+            </h1>
+            <div className="from-secondary to-primary h-1 w-12 bg-gradient-to-r sm:w-16"></div>
+          </div>
 
-        <p className="text-muted-foreground mx-auto mb-8 max-w-2xl text-lg text-pretty">
-          {t("subtitle")}
-        </p>
+          <p className="text-muted-foreground max-w-md text-base leading-relaxed text-pretty sm:text-lg md:text-xl">
+            {t("subtitle")}
+          </p>
 
-        <Button
-          onClick={scrollToProducts}
-          size="lg"
-          className="bg-accent hover:bg-accent/90 text-accent-foreground mb-8 md:mb-0"
-        >
-          {t("cta")}
-        </Button>
+          <div className="flex w-full flex-col gap-3 pt-2 sm:w-auto sm:flex-row sm:gap-4 sm:pt-4">
+            <Button className="rounded-lg px-6 py-3 text-base text-white transition-transform hover:scale-105 sm:px-8 sm:py-6 sm:text-lg">
+              <Link href="/products">{t("cta")}</Link>
+            </Button>
+            <Button
+              variant="outline"
+              className="border-primary text-primary rounded-lg bg-transparent px-6 py-3 text-base sm:px-8 sm:py-6 sm:text-lg"
+            >
+              <Link href="/about">
+                {t("learn_more")}
+              </Link>
+            </Button>
+          </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 transform animate-bounce">
-          <ChevronDown className="text-accent h-6 w-6" />
+          <div className="text-secondary grid grid-cols-1 gap-4 pt-4 text-xs sm:grid-cols-3 sm:gap-8 sm:pt-8 sm:text-sm">
+            <div className="flex flex-col gap-1">
+              <span className="font-semibold">{t("tag_1")}</span>
+              <span className="text-secondary-foreground">
+                {t("tag_1_message")}
+              </span>
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="font-semibold">{t("tag_2")}</span>
+              <span className="text-secondary-foreground">
+                {t("tag_2_message")}
+              </span>
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="font-semibold">{t("tag_3")}</span>
+              <span className="text-secondary-foreground">
+                {t("tag_3_message")}
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+
+        {/* Right Image */}
+        <div className="relative h-64 w-full sm:h-96 md:h-full md:min-h-[600px]">
+          <Image
+            src="/product.webp"
+            alt="Honey jars with wooden dippers"
+            fill
+            className="object-contain"
+            priority
+          />
+          {/* Decorative elements */}
+          <div className="absolute top-0 right-0 -z-10 h-24 w-24 rounded-full bg-amber-200/20 blur-3xl sm:h-32 sm:w-32"></div>
+          <div className="absolute bottom-0 left-0 -z-10 h-32 w-32 rounded-full bg-amber-300/10 blur-3xl sm:h-40 sm:w-40"></div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="bg-secondary py-12 text-white sm:py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="grid grid-cols-1 gap-8 sm:gap-12 md:grid-cols-3">
+            <div className="text-center">
+              <div className="mb-3 font-serif text-3xl sm:mb-4 sm:text-4xl">
+                🍯
+              </div>
+              <h3 className="mb-2 text-lg font-semibold sm:text-xl">
+                Miel Pur
+              </h3>
+              <p className="text-sm text-amber-100 sm:text-base">
+                Sans additifs, sans transformation, directement de la ruche
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="mb-3 font-serif text-3xl sm:mb-4 sm:text-4xl">
+                🌿
+              </div>
+              <h3 className="mb-2 text-lg font-semibold sm:text-xl">
+                Biologique
+              </h3>
+              <p className="text-sm text-amber-100 sm:text-base">
+                Certifié biologique, respectant l&apos;environnement
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="mb-3 font-serif text-3xl sm:mb-4 sm:text-4xl">
+                🚚
+              </div>
+              <h3 className="mb-2 text-lg font-semibold sm:text-xl">
+                Livraison Rapide
+              </h3>
+              <p className="text-sm text-amber-100 sm:text-base">
+                Livré frais chez vous dans les meilleurs délais
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

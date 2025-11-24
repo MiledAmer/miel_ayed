@@ -6,9 +6,17 @@
       "contact": "Contact"
     },
     "HeroSection": {
-      "title": "Premium Tunisian Honey",
+      "title_1": "Tunisian Honey",
+      "title_2": "High Quality",
       "subtitle": "Discover authentic honey and bee products from Tunisia. Organic, pure, and delivered to your door.",
-      "cta": "Explore Products"
+      "cta": "Explore Products",
+      "learn_more": "Learn More",
+      "tag_1": "100% Organic",
+      "tag_1_message": "Certified",
+      "tag_2": "Free Shipping",
+      "tag_2_message": "From 20DT",
+      "tag_3": "Locally Produced",
+      "tag_3_message": "Tunisian"
     },
     "HighlightedProducts": {
       "featured": "Featured Products",
