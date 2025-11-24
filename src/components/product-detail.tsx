@@ -60,7 +60,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
         <div className="flex items-center justify-center">
           <div className="bg-muted relative aspect-square w-full overflow-hidden rounded-lg">
             <Image
-              src={urlFor(product.image).url() || "/placeholder.svg"}
+              src={product.image?.asset ? urlFor(product.image)?.url() ?? "/organic-acacia-honey.jpg" : "/organic-acacia-honey.jpg"}
               alt={getName()}
               fill
               className="object-cover"
