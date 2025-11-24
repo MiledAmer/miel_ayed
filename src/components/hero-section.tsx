@@ -24,7 +24,7 @@ export function HeroSection() {
               {t("title_1")}{" "}
               <span className="text-primary block">{t("title_2")}</span>
             </h1>
-            <div className="from-secondary to-primary h-1 w-12 bg-gradient-to-r sm:w-16"></div>
+            <div className="from-secondary to-primary h-1 w-12 bg-linear-to-r sm:w-16"></div>
           </div>
 
           <p className="text-muted-foreground max-w-md text-base leading-relaxed text-pretty sm:text-lg md:text-xl">

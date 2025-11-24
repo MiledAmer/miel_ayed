@@ -12,12 +12,10 @@ interface ProductCardProps {
   product: Product;
 }
 
-
 export function ProductCard({ product }: ProductCardProps) {
   const t = useTranslations("ProductCard");
   const locale = useLocale();
   const isRTL = locale === "ar";
-
 
   const { addItem } = useCart();
 
@@ -44,7 +42,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <Link href={`/product/${product._id}`}>
         <div className="bg-muted relative h-48 overflow-hidden">
           <Image
-            src={urlFor(product.image).url() || "/placeholder.svg"}
+            src={product.image?.asset ? urlFor(product.image)?.url() ?? "/organic-acacia-honey.jpg" : "/organic-acacia-honey.jpg"}
             alt={getName()}
             fill
             className="object-cover transition-transform duration-300 hover:scale-105"

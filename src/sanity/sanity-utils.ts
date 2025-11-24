@@ -4,6 +4,7 @@ import type { Product } from "./types/products";
 import type { Category, Subcategory } from "./types/categories";
 import imageUrlBuilder from "@sanity/image-url";
 import type { ImageUrlBuilder } from "sanity";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 interface ProductFilters {
   categorySlug?: string;
@@ -157,8 +158,10 @@ export function getTranslatedSubcategoryName(
   }
 }
 
-// eslint-disable-next-line
-export function urlFor(source: any): ImageUrlBuilder {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  return imageUrlBuilder(client).image(source);
+export function urlFor(source: SanityImageSource): ImageUrlBuilder | null {
+  try {
+    return imageUrlBuilder(client).image(source);
+  } catch {
+    return null;
+  }
 }

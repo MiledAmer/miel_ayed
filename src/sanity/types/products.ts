@@ -1,5 +1,3 @@
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-
 export type Product = {
   _id: string;
   title: {
@@ -14,7 +12,12 @@ export type Product = {
   };
   variants: ProductVariant[];
   selectedVariant: ProductVariant;
-  image: SanityImageSource;
+  image?: {
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
   category: {
     _id: string;
     name: {
@@ -37,11 +40,11 @@ export type Product = {
       current: string;
     };
   };
-}
+};
 
 export type ProductVariant = {
   _key?: string;
   weight: string;
   price: number;
   availability: boolean;
-}
+};
