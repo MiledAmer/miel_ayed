@@ -22,6 +22,9 @@
       "featured": "Produits Vedettes",
       "subtitle": "Sélection soigneusement choisie de nos meilleurs miels et produits apicoles"
     },
+    "TopSales": {
+      "title": "Meilleures Ventes"
+    },
     "Footer": {
       "home": "Accueil",
       "products": "Produits",

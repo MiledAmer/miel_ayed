@@ -22,6 +22,9 @@
       "featured": "Featured Products",
       "subtitle": "Hand-picked selection of our finest honey and bee products"
     },
+    "TopSales": {
+      "title": "Top Sales"
+    },
     "Footer": {
       "home": "Home",
       "products": "Products",
