@@ -39,13 +39,11 @@ export async function getFilteredProducts(
   }
 
   if (categorySlug) {
-    // Filter by category (products that have subcategories belonging to this category)
-    filterConditions += ` && count((subcategories[]->_id)[@ in *[_type == "category" && slug.current == "${categorySlug}"].subcategories[]->_id]) > 0`;
+    filterConditions += ` && category->slug.current == "${categorySlug}"`;
   }
 
   if (subcategorySlug) {
-    // Filter by specific subcategories
-    filterConditions += ` && count((subcategories[]->_id)[@ in *[_type == "subcategory" && slug.current == "${subcategorySlug}"]._id]) > 0`;
+    filterConditions += ` && subcategory->slug.current == "${subcategorySlug}"`;
   }
 
   // Query for products with filters
