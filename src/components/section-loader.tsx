@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 export default function SectionLoader() {
   return (
@@ -7,7 +7,7 @@ export default function SectionLoader() {
         {/* Hexagon container */}
         <div className="relative h-16 w-16">
           {/* Animated hexagons */}
-          <div className="animate-spin-slow absolute inset-0">
+          <div className="absolute inset-0 animate-spin-slow">
             <svg viewBox="0 0 100 100" className="h-full w-full">
               <polygon
                 points="50 1 95 25 95 75 50 99 5 75 5 25"
@@ -19,7 +19,7 @@ export default function SectionLoader() {
             </svg>
           </div>
 
-          <div className="animate-spin-reverse absolute inset-0">
+          <div className="absolute inset-0 animate-spin-reverse">
             <svg viewBox="0 0 100 100" className="h-full w-full">
               <polygon
                 points="50 1 95 25 95 75 50 99 5 75 5 25"
@@ -35,16 +35,12 @@ export default function SectionLoader() {
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="h-6 w-6 animate-pulse">
               <svg viewBox="0 0 100 100" className="h-full w-full">
-                <polygon
-                  points="50 1 95 25 95 75 50 99 5 75 5 25"
-                  fill="currentColor"
-                  className="text-[#E8A040]"
-                />
+                <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" fill="currentColor" className="text-[#E8A040]" />
               </svg>
             </div>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
