@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 
 
 export default function LoadingPageComponent() {
-  const [progress, setProgress] = useState(0)
+  const [progress, setProgress] = useState(50)
 
   useEffect(() => {
     const interval = setInterval(() => {
