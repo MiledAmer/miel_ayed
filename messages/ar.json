@@ -1,4 +1,8 @@
 {
+  "pagination": {
+    "previous": "السابق",
+    "next": "التالي"
+  },
   "HomePage": {
     "Header": {
       "products": "المنتجات",

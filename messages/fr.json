@@ -1,4 +1,8 @@
 {
+  "pagination": {
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
   "HomePage": {
     "Header": {
       "products": "Produits",
