@@ -12,6 +12,7 @@ export type Subcategory = {
 
 export type Category = {
   _id: string;
+  LandingPageTopSales: boolean;
   name: {
     en: string;
     fr: string;

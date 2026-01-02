@@ -8,6 +8,12 @@ export default defineType({
   icon: ChartColumnStacked,
   fields: [
     defineField({
+      name: "LandingPageTopSales",
+      title: "Add the category to langding page top sales section",
+      type: "boolean",
+      initialValue: false,
+    }),
+    defineField({
       name: "name",
       title: "Category Name",
       type: "object",

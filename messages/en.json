@@ -20,7 +20,10 @@
     },
     "HighlightedProducts": {
       "featured": "Featured Products",
-      "subtitle": "Hand-picked selection of our finest honey and bee products"
+      "Featured": "Featured",
+      "Products": "Products",
+      "subtitle": "Hand-picked selection of our finest honey and bee products",
+      "see_more": "See More Products"
     },
     "TopSales": {
       "title": "Top Sales"

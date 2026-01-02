@@ -168,3 +168,39 @@ export function urlFor(source: SanityImageSource): ImageUrlBuilder | null {
     return null;
   }
 }
+
+export interface CategoryWithProducts extends Category {
+  products: Product[];
+}
+
+export async function getLandingPageTopSales(): Promise<CategoryWithProducts[]> {
+  const query = groq`
+    *[_type == "category" && LandingPageTopSales == true] {
+      _id,
+      name,
+      slug,
+      LandingPageTopSales,
+      "products": *[_type == "product" && category._ref == ^._id && isTopSale == true] {
+        _id,
+        title,
+        description,
+        variants,
+        image,
+        images,
+        selectedVariant,
+        category-> {
+          _id,
+          name,
+          slug
+        },
+        subcategory-> {
+          _id,
+          name,
+          slug
+        }
+      }
+    }
+  `;
+
+  return client.fetch(query);
+}

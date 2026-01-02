@@ -20,7 +20,10 @@
     },
     "HighlightedProducts": {
       "featured": "Produits Vedettes",
-      "subtitle": "Sélection soigneusement choisie de nos meilleurs miels et produits apicoles"
+      "Featured": "Produits",
+      "Products": "Vedettes",
+      "subtitle": "Sélection soigneusement choisie de nos meilleurs miels et produits apicoles",
+      "see_more": "Voir Plus de Produits"
     },
     "TopSales": {
       "title": "Meilleures Ventes"
