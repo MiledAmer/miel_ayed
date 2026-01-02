@@ -1,26 +1,26 @@
-import { ProductCard } from "@/components/product-card";
 import { ProductsFilters } from "@/components/products-filters";
 import { getLocale, getTranslations } from "next-intl/server";
-import { getCategoriesWithSubcategories, getFilteredProducts } from "@/sanity/sanity-utils";
+import { getCategoriesWithSubcategories } from "@/sanity/sanity-utils";
+import ProductsGrid from "@/components/products-grid";
+import { Suspense } from "react";
+import SectionLoader from "@/components/section-loader";
 
 export default async function ProductsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category: string; subcategory: string }>;
+  searchParams: Promise<{
+    category: string;
+    subcategory: string;
+    page?: string;
+  }>;
 }) {
   const t = await getTranslations("ProductsPage");
   const locale = await getLocale();
   const isRTL = locale === "ar";
-  
-  const { category, subcategory } = await searchParams;
-  
+
+  const { category, subcategory, page } = await searchParams;
+
   const categories = await getCategoriesWithSubcategories();
-  const filteredProducts = await getFilteredProducts({
-    categorySlug: category,
-    subcategorySlug: subcategory,
-    page: 1,
-    pageSize: 100,
-  });
 
   return (
     <main className={isRTL ? "rtl" : "ltr"} dir={isRTL ? "rtl" : "ltr"}>
@@ -28,9 +28,6 @@ export default async function ProductsPage({
         <h1 className="text-primary mb-2 text-3xl font-bold text-balance md:text-4xl">
           {t("products")}
         </h1>
-        <p className="text-muted-foreground mb-8">
-          {t("showing")} {filteredProducts.products.length} {t("products_count")}
-        </p>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
           {/* Filters Sidebar - Hidden on mobile */}
@@ -39,21 +36,20 @@ export default async function ProductsPage({
           </div>
 
           {/* Products Grid */}
-          <div className="lg:col-span-3">
-            {filteredProducts.products.length > 0 ? (
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                {filteredProducts.products.map((product) => (
-                  <ProductCard key={product._id} product={product} />
-                ))}
+          <Suspense
+            key={`${category}-${subcategory}-${page}`}
+            fallback={
+              <div className="flex min-h-[50vh] items-center justify-center lg:col-span-3">
+                <SectionLoader />
               </div>
-            ) : (
-              <div className="bg-muted rounded-lg py-12 text-center">
-                <p className="text-muted-foreground text-lg">
-                  {t("no_results")}
-                </p>
-              </div>
-            )}
-          </div>
+            }
+          >
+            <ProductsGrid
+              category={category}
+              subcategory={subcategory}
+              page={page}
+            />
+          </Suspense>
         </div>
       </div>
     </main>
