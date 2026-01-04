@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import type { Language } from "@/lib/types";
 import type { Locales } from "@/i18n/request";
 import { setLocale } from "@/i18n/actions";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 // import { setLocale, type Locales } from "@/i18n/request";
 
 const LANGUAGES = [
@@ -22,6 +22,7 @@ const LANGUAGES = [
 
 export function LanguageSelector() {
   const locale = useLocale();
+  const t = useTranslations("HomePage.Header");
 
   const currentLanguage =
     LANGUAGES.find((lang) => lang.code === locale) ?? LANGUAGES[0];
@@ -35,7 +36,7 @@ export function LanguageSelector() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className="relative">
+        <Button variant="outline" size="icon" className="relative" aria-label={t("language")}>
           <CurrentFlag className="h-5 w-5" />
         </Button>
       </DropdownMenuTrigger>

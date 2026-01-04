@@ -7,7 +7,10 @@
     "Header": {
       "products": "Products",
       "about": "About",
-      "contact": "Contact"
+      "contact": "Contact",
+      "cart": "Cart",
+      "menu": "Menu",
+      "language": "Language"
     },
     "HeroSection": {
       "title_1": "Tunisian Honey",

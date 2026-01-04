@@ -7,13 +7,14 @@ import { MobileNav } from "./mobile-nav";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
 import { LanguageSelector } from "./language-selector";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import type { Category } from "@/sanity/types/categories";
 import { HeaderNavigation } from "./header-navigation";
 
 export function Header({ categories }: { categories: Category[] }) {
   const locale = useLocale();
+  const t = useTranslations("HomePage.Header");
   const { items } = useCart();
 
   const isRTL = locale === "ar";
@@ -48,7 +49,7 @@ export function Header({ categories }: { categories: Category[] }) {
             <LanguageSelector />
 
             <Link href="/cart">
-              <Button variant="outline" size="icon" className="relative">
+              <Button variant="outline" size="icon" className="relative" aria-label={t("cart")}>
                 <ShoppingCart className="h-5 w-5" />
                 {cartCount > 0 && (
                   <span className="bg-accent text-accent-foreground absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold">

@@ -7,7 +7,10 @@
     "Header": {
       "products": "Produits",
       "about": "À propos",
-      "contact": "Contact"
+      "contact": "Contact",
+      "cart": "Panier",
+      "menu": "Menu",
+      "language": "Langue"
     },
     "HeroSection": {
       "title_1": "Miel Tunisien",

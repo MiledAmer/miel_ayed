@@ -7,7 +7,10 @@
     "Header": {
       "products": "المنتجات",
       "about": "معلومات",
-      "contact": "تواصل"
+      "contact": "تواصل",
+      "cart": "عربة التسوق",
+      "menu": "القائمة",
+      "language": "اللغة"
     },
     "HeroSection": {
       "title_1": "العسل التونسي",

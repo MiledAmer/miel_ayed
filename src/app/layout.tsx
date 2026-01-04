@@ -31,7 +31,7 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   return (
-    <html lang={locale} className={myFont.className}>
+    <html lang={locale} className={myFont.className} suppressHydrationWarning>
       <body className={`font-sans antialiased`}>{children}</body>
     </html>
   );
