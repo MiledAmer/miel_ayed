@@ -170,6 +170,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             onClick={handleAddToCart}
             size="lg"
             className="bg-accent hover:bg-accent/90 text-accent-foreground mb-4 w-full"
+            disabled={!selectedVariant?.availability}
           >
             <ShoppingCart className="mr-2 h-5 w-5" />
             {t("add_to_cart")}
