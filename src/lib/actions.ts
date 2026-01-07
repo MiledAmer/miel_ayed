@@ -1,8 +1,5 @@
 "use server";
-
-import { createClient } from "next-sanity";
-import { apiVersion, dataset, projectId } from "@/sanity/env";
-import { env } from "@/env";
+import { client } from "@/lib/sanity-client";
 
 interface OrderItem {
   productId: string;
@@ -22,16 +19,6 @@ interface CreateOrderParams {
 }
 
 export async function createOrder(orderData: CreateOrderParams) {
-  const token = env.SANITY_API_TOKEN;
-
-  const client = createClient({
-    projectId,
-    dataset,
-    apiVersion,
-    token,
-    useCdn: false,
-  });
-
   try {
     const orderNumber = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
@@ -72,16 +59,6 @@ interface CreateMessageParams {
 }
 
 export async function createMessage(messageData: CreateMessageParams) {
-  const token = env.SANITY_API_TOKEN;
-
-  const client = createClient({
-    projectId,
-    dataset,
-    apiVersion,
-    token,
-    useCdn: false,
-  });
-
   try {
     const result = await client.create({
       _type: "message",
@@ -92,8 +69,7 @@ export async function createMessage(messageData: CreateMessageParams) {
     });
 
     return { success: true, id: result._id };
-  } catch (error) {
-    console.error("Error creating message:", error);
+  } catch {
     return { success: false, error: "Failed to create message" };
   }
 }
