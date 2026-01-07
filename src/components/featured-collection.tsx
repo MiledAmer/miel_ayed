@@ -93,7 +93,11 @@ export default async function FeaturedCollection() {
 
       <div className="relative z-10 mx-auto max-w-6xl">
         <div className="mb-10 flex flex-col items-center justify-between gap-6 md:flex-row md:items-end">
-          <div className="text-center md:text-left">
+          <div
+            className={
+              "text-center " + (isRTL ? "md:text-right" : "md:text-left")
+            }
+          >
             <h2 className="mb-4 text-4xl font-black tracking-tighter md:text-5xl">
               <span className="text-primary">{t("Featured")}</span>{" "}
               <span className="text-foreground">{t("Products")}</span>
