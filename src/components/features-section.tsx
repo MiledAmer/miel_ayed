@@ -1,4 +1,8 @@
-export default function FeaturesSection() {
+import { getTranslations } from "next-intl/server";
+
+export default async function FeaturesSection() {
+  const t = await getTranslations("HomePage.FeaturesSection");
+
   return (
     <section className="bg-secondary py-12 text-white sm:py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -7,9 +11,11 @@ export default function FeaturesSection() {
             <div className="mb-3 font-serif text-3xl sm:mb-4 sm:text-4xl">
               🍯
             </div>
-            <h3 className="mb-2 text-lg font-semibold sm:text-xl">Miel Pur</h3>
+            <h3 className="mb-2 text-lg font-semibold sm:text-xl">
+              {t("pure_honey_title")}
+            </h3>
             <p className="text-sm text-amber-100 sm:text-base">
-              Sans additifs, sans transformation, directement de la ruche
+              {t("pure_honey_desc")}
             </p>
           </div>
           <div className="text-center">
@@ -17,10 +23,10 @@ export default function FeaturesSection() {
               🌿
             </div>
             <h3 className="mb-2 text-lg font-semibold sm:text-xl">
-              Biologique
+              {t("natural_title")}
             </h3>
             <p className="text-sm text-amber-100 sm:text-base">
-              Certifié biologique, respectant l&apos;environnement
+              {t("natural_desc")}
             </p>
           </div>
           <div className="text-center">
@@ -28,10 +34,10 @@ export default function FeaturesSection() {
               🚚
             </div>
             <h3 className="mb-2 text-lg font-semibold sm:text-xl">
-              Livraison Rapide
+              {t("fast_delivery_title")}
             </h3>
             <p className="text-sm text-amber-100 sm:text-base">
-              Livré frais chez vous dans les meilleurs délais
+              {t("fast_delivery_desc")}
             </p>
           </div>
         </div>

@@ -25,6 +25,14 @@
       "tag_3": "Production Locale",
       "tag_3_message": "Tunisienne"
     },
+    "FeaturesSection": {
+      "pure_honey_title": "Miel Pur",
+      "pure_honey_desc": "Sans additifs, sans transformation, directement de la ruche",
+      "natural_title": "Naturel",
+      "natural_desc": "100% naturel, récolté avec soin par des apiculteurs passionnés",
+      "fast_delivery_title": "Livraison Rapide",
+      "fast_delivery_desc": "Livré frais chez vous dans les meilleurs délais"
+    },
     "HighlightedProducts": {
       "featured": "Produits Vedettes",
       "Featured": "Produits",

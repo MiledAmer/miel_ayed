@@ -25,6 +25,14 @@
       "tag_3": "منتج محلي",
       "tag_3_message": "تونسي"
     },
+    "FeaturesSection": {
+      "pure_honey_title": "عسل نقي",
+      "pure_honey_desc": "بدون إضافات، بدون معالجة، مباشرة من الخلية",
+      "natural_title": "طبيعي",
+      "natural_desc": "طبيعي 100%، تم حصاده بعناية من قبل نحالين شغوفين",
+      "fast_delivery_title": "توصيل سريع",
+      "fast_delivery_desc": "يصلك طازجاً إلى منزلك في أسرع وقت ممكن"
+    },
     "HighlightedProducts": {
       "featured": "المنتجات المميزة",
       "Featured": "المنتجات",

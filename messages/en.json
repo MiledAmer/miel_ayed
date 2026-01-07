@@ -25,6 +25,14 @@
       "tag_3": "Locally Produced",
       "tag_3_message": "Tunisian"
     },
+    "FeaturesSection": {
+      "pure_honey_title": "Pure Honey",
+      "pure_honey_desc": "Additive-free, unprocessed, straight from the hive",
+      "natural_title": "Natural",
+      "natural_desc": "100% natural, harvested with care by passionate beekeepers",
+      "fast_delivery_title": "Fast Delivery",
+      "fast_delivery_desc": "Delivered fresh to your home as soon as possible"
+    },
     "HighlightedProducts": {
       "featured": "Featured Products",
       "Featured": "Featured",
