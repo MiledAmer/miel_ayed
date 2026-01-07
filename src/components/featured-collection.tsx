@@ -28,14 +28,14 @@ async function FeaturedProducts({
   const isRTL = locale === "ar";
 
   return (
-    <div className="space-y-20" dir={isRTL ? "rtl" : "ltr"}>
+    <div className="space-y-12" dir={isRTL ? "rtl" : "ltr"}>
       {categories.map(
         (category) =>
           category.products &&
           category.products.length > 0 && (
-            <div key={category._id} className="space-y-8">
-              <div className="mb-16 flex flex-col items-center justify-between gap-8 md:flex-row md:items-end">
-                <h3 className="text-primary text-4xl font-black">
+            <div key={category._id} className="space-y-6">
+              <div className="mb-8 flex flex-col items-center justify-between gap-6 md:flex-row md:items-end">
+                <h3 className="text-primary text-3xl font-black">
                   {getTranslatedCategoryName(category, locale)}
                 </h3>
                 <Link
@@ -54,7 +54,7 @@ async function FeaturedProducts({
                   align: "start",
                   loop: true,
                 }}
-                className="w-full"
+                className="w-full relative"
               >
                 <CarouselContent>
                   {category.products.map((product) => (
@@ -85,16 +85,16 @@ export default async function FeaturedCollection() {
 
   return (
     <section
-      className="bg-background relative min-h-screen px-4 py-24"
+      className="bg-background relative min-h-screen overflow-hidden px-4 py-16"
       dir={isRTL ? "rtl" : "ltr"}
     >
       {/* Background elements */}
       <div className="bg-primary/10 absolute top-0 left-1/4 h-80 w-80 rounded-full mix-blend-multiply blur-3xl dark:mix-blend-screen" />
 
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="mb-16 flex flex-col items-center justify-between gap-8 md:flex-row md:items-end">
+      <div className="relative z-10 mx-auto max-w-6xl">
+        <div className="mb-10 flex flex-col items-center justify-between gap-6 md:flex-row md:items-end">
           <div className="text-center md:text-left">
-            <h2 className="mb-4 text-5xl font-black tracking-tighter md:text-6xl">
+            <h2 className="mb-4 text-4xl font-black tracking-tighter md:text-5xl">
               <span className="text-primary">{t("Featured")}</span>{" "}
               <span className="text-foreground">{t("Products")}</span>
             </h2>
