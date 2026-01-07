@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useLocale, useTranslations } from "next-intl";
 import type { Product } from "@/sanity/types/products";
 import { urlFor } from "@/sanity/sanity-utils";
+import { toast } from "sonner";
 
 interface ProductCardProps {
   product: Product;
@@ -42,7 +43,11 @@ export function ProductCard({ product }: ProductCardProps) {
       <Link href={`/product/${product._id}`}>
         <div className="bg-muted relative h-48 overflow-hidden">
           <Image
-            src={product.image?.asset ? urlFor(product.image)?.url() ?? "/organic-acacia-honey.jpg" : "/organic-acacia-honey.jpg"}
+            src={
+              product.image?.asset
+                ? (urlFor(product.image)?.url() ?? "/organic-acacia-honey.jpg")
+                : "/organic-acacia-honey.jpg"
+            }
             alt={getName()}
             fill
             className="object-cover transition-transform duration-300 hover:scale-105"
@@ -69,7 +74,10 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
           <Button
             size="sm"
-            onClick={() => addItem(product, product.selectedVariant, 1)}
+            onClick={() => {
+              addItem(product, product.selectedVariant, 1);
+              toast.success(t("added"));
+            }}
             className="bg-accent hover:bg-accent/90 text-accent-foreground"
           >
             {t("add_to_cart")}

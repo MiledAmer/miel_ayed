@@ -24,7 +24,16 @@ export default async function RootLayout({
         <Header categories={categories} />
         {children}
         <Footer />
-        <Toaster />
+        <Toaster
+          position="top-right"
+          style={
+            {
+              "--normal-bg": "var(--accent)",
+              "--normal-text": "var(--accent-foreground)",
+              "--normal-border": "var(--accent)",
+            } as React.CSSProperties
+          }
+        />
       </NextIntlClientProvider>
 
       {/* <Analytics /> */}
