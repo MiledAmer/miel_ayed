@@ -64,3 +64,36 @@ export async function createOrder(orderData: CreateOrderParams) {
     return { success: false, error: "Failed to create order" };
   }
 }
+
+interface CreateMessageParams {
+  name: string;
+  email: string;
+  message: string;
+}
+
+export async function createMessage(messageData: CreateMessageParams) {
+  const token = env.SANITY_API_TOKEN;
+
+  const client = createClient({
+    projectId,
+    dataset,
+    apiVersion,
+    token,
+    useCdn: false,
+  });
+
+  try {
+    const result = await client.create({
+      _type: "message",
+      name: messageData.name,
+      email: messageData.email,
+      message: messageData.message,
+      createdAt: new Date().toISOString(),
+    });
+
+    return { success: true, id: result._id };
+  } catch (error) {
+    console.error("Error creating message:", error);
+    return { success: false, error: "Failed to create message" };
+  }
+}

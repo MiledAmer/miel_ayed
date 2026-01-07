@@ -70,7 +70,9 @@
     "address": "Tunisie",
     "hours": "Heures d'ouverture",
     "hours_desc": "Lundi - Vendredi: 9h00 - 18h00",
-    "thanks": "Merci pour votre message! Nous vous recontacterons bientôt."
+    "thanks": "Merci pour votre message! Nous vous recontacterons bientôt.",
+    "error": "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer.",
+    "success": "Votre message a été envoyé avec succès."
   },
   "CartPage": {
     "cart": "Panier",

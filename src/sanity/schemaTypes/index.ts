@@ -3,7 +3,8 @@ import productType from './product-type'
 import categoryType from './category-type'
 import subcategoryType from './subcategory-type'
 import orderType from './order-type'
+import messageType from './message-type'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [productType, categoryType, subcategoryType, orderType],
+  types: [productType, categoryType, subcategoryType, orderType, messageType],
 }

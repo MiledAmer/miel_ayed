@@ -70,7 +70,9 @@
     "address": "Tunisia",
     "hours": "Business Hours",
     "hours_desc": "Monday - Friday: 9:00 AM - 6:00 PM",
-    "thanks": "Thank you for your message! We'll get back to you soon."
+    "thanks": "Thank you for your message! We'll get back to you soon.",
+    "error": "An error occurred while sending your message. Please try again.",
+    "success": "Your message has been sent successfully."
   },
   "CartPage": {
     "cart": "Shopping Cart",

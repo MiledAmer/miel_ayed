@@ -2,8 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin } from "lucide-react";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { createMessage } from "@/lib/actions";
+import { toast } from "sonner";
 
 export default function ContactPage() {
   const t = useTranslations("ContactPage");
@@ -16,14 +18,30 @@ export default function ContactPage() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: "", email: "", message: "" });
-    }, 3000);
+
+    startTransition(async () => {
+      try {
+        const result = await createMessage(formData);
+
+        if (result.success) {
+          setSubmitted(true);
+          toast.success(t("success"));
+          setFormData({ name: "", email: "", message: "" });
+
+          setTimeout(() => {
+            setSubmitted(false);
+          }, 3000);
+        } else {
+          toast.error(t("error"));
+        }
+      } catch {
+        toast.error(t("error"));
+      }
+    });
   };
 
   const handleChange = (
@@ -46,7 +64,7 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 max-w-5xl mx-auto">
           {/* Contact Form */}
           <div>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -109,9 +127,10 @@ export default function ContactPage() {
 
               <Button
                 type="submit"
+                disabled={isPending}
                 className="bg-accent hover:bg-accent/90 text-accent-foreground w-full"
               >
-                {t("send")}
+                {isPending ? "Sending..." : t("send")}
               </Button>
 
               {submitted && (
