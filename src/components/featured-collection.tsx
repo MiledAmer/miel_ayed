@@ -53,6 +53,7 @@ async function FeaturedProducts({
                 opts={{
                   align: "start",
                   loop: true,
+                  direction: isRTL ? "rtl" : "ltr",
                 }}
                 className="w-full relative"
               >
