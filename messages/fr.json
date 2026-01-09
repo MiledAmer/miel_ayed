@@ -96,7 +96,10 @@
     "shipping": "Livraison",
     "free": "Gratuit",
     "checkout_integration_coming_soon": "L'intégration du paiement arrive bientôt !",
-    "remove": "Supprimer"
+    "remove": "Supprimer",
+    "free_shipping_banner": "Livraison gratuite à partir de 200 DT",
+    "free_shipping_unlocked": "🎉 Vous avez débloqué la livraison gratuite !",
+    "add_more_for_free_shipping": "Ajoutez {amount} DT pour la livraison gratuite"
   },
   "ProductCard": {
     "add_to_cart": "Ajouter au panier",
@@ -135,6 +138,9 @@
     "shipping_details": "Détails de livraison",
     "order_summary": "Résumé de la commande",
     "total": "Total",
+    "subtotal": "Sous-total",
+    "shipping": "Livraison",
+    "free": "Gratuit",
     "currency": "TND",
     "name": "Nom complet",
     "name_placeholder": "Jean Dupont",

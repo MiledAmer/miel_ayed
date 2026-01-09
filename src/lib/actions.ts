@@ -40,7 +40,10 @@ export async function createOrder(orderData: CreateOrderParams) {
         quantity: item.quantity,
         price: item.price,
       })),
-      totalAmount: orderData.totalAmount,
+      totalAmount:
+        orderData.totalAmount >= 200
+          ? orderData.totalAmount
+          : orderData.totalAmount + 8,
       status: "pending",
       orderDate: new Date().toISOString(),
     });

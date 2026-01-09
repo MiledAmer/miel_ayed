@@ -12,10 +12,7 @@ const myFont = localFont({
 export const metadata: Metadata = {
   title: "Miel Ayed - عسل عياد",
   description: "Honey products from Tunisia - منتجات العسل التونسية",
-  icons: {
-    icon: "/icon.png",
-    apple: "/icon.png",
-  },
+  icons: [{ rel: "icon", url: "/icon.png" }],
 };
 
 export const viewport = {
