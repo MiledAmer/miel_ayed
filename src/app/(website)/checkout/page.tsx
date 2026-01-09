@@ -13,6 +13,9 @@ export default function CheckoutPage() {
   const locale = useLocale()
   const isRTL = locale === "ar"
   const total = getTotal()
+  const FREE_SHIPPING_THRESHOLD = 200
+  const shippingFee = total >= FREE_SHIPPING_THRESHOLD ? 0 : 8 
+  const finalTotal = total + shippingFee
 
   useEffect(() => {
     if (items.length === 0) {
@@ -62,10 +65,23 @@ export default function CheckoutPage() {
                 ))}
               </div>
 
+              <div className="space-y-3 border-b border-border py-4">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">{t("subtotal")}</span>
+                  <span className="font-medium">{total.toFixed(2)} {t("currency")}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">{t("shipping")}</span>
+                  <span className={`font-medium ${shippingFee === 0 ? "text-green-600" : ""}`}>
+                    {shippingFee === 0 ? t("free") : `${shippingFee.toFixed(2)} ${t("currency")}`}
+                  </span>
+                </div>
+              </div>
+
               <div className="mt-6 flex justify-between">
                 <span className="text-foreground font-bold">{t("total")}</span>
                 <span className="text-accent text-2xl font-bold">
-                  {total.toFixed(2)} {t("currency")}
+                  {finalTotal.toFixed(2)} {t("currency")}
                 </span>
               </div>
             </div>

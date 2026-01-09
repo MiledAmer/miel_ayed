@@ -96,7 +96,10 @@
     "shipping": "Shipping",
     "free": "Free",
     "checkout_integration_coming_soon": "Checkout integration coming soon!",
-    "remove": "Remove"
+    "remove": "Remove",
+    "free_shipping_banner": "Free delivery from 200 TND",
+    "free_shipping_unlocked": "🎉 You've unlocked free shipping!",
+    "add_more_for_free_shipping": "Add {amount} TND more for free shipping"
   },
   "ProductCard": {
     "add_to_cart": "Add to Cart",
@@ -135,6 +138,9 @@
     "shipping_details": "Shipping Details",
     "order_summary": "Order Summary",
     "total": "Total",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "free": "Free",
     "currency": "TND",
     "name": "Full Name",
     "name_placeholder": "John Doe",
