@@ -3,11 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export function HeroSection() {
   const t = useTranslations("HomePage.HeroSection");
   const locale = useLocale();
+  const router = useRouter();
 
   const isRTL = locale === "ar";
 
@@ -32,16 +33,18 @@ export function HeroSection() {
           </p>
 
           <div className="flex w-full flex-col gap-3 pt-2 sm:w-auto sm:flex-row sm:gap-4 sm:pt-4">
-            <Button className="rounded-lg px-6 py-3 text-base text-white transition-transform hover:scale-105 sm:px-8 sm:py-6 sm:text-lg">
-              <Link href="/products">{t("cta")}</Link>
+            <Button 
+              onClick={() => router.push("/products")}
+              className="rounded-lg px-6 py-3 text-base text-white transition-transform hover:scale-105 sm:px-8 sm:py-6 sm:text-lg"
+            >
+              {t("cta")}
             </Button>
             <Button
               variant="outline"
+              onClick={() => router.push("/about")}
               className="border-primary text-primary rounded-lg bg-transparent px-6 py-3 text-base sm:px-8 sm:py-6 sm:text-lg"
             >
-              <Link href="/about">
-                {t("learn_more")}
-              </Link>
+              {t("learn_more")}
             </Button>
           </div>
 
