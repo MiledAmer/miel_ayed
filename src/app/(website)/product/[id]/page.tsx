@@ -4,42 +4,46 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Suspense } from "react";
-import { getProductByID } from "@/sanity/sanity-utils";
+import { getProductByID, urlFor } from "@/sanity/sanity-utils";
 import { SimilarProducts } from "@/components/similar-products";
-import type { Metadata } from 'next'
+import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
+import type { Product } from "@/sanity/types/products";
 
 interface ProductPageProps {
   params: Promise<{ id: string }>;
 }
 
-export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ProductPageProps): Promise<Metadata> {
   const { id } = await params;
 
-  const product = await client.fetch<{ name: string; description: string; imageUrl: string | null } | null>(
+  const product = await client.fetch<Product | null>(
     `*[_type == "product" && _id == $id][0]{
       name,
       description,
-      "imageUrl": image.asset->url
+      image
     }`,
-    { id }
+    { id },
   );
 
   if (!product) {
-    return { title: 'Produit non trouvé' };
+    return { title: "Produit non trouvé" };
   }
 
+  const imageUrl = product.image ? urlFor(product.image)?.url() : null;
+
   return {
-    title: product.name,
-    description: product.description,
+    title: product.title.fr,
+    description: product.description.fr,
     openGraph: {
-      title: product.name,
-      description: product.description,
-      images: product.imageUrl ? [product.imageUrl] : undefined,
+      title: product.title.fr,
+      description: product.description.fr,
+      images: imageUrl ? [imageUrl] : undefined,
     },
   };
 }
-
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = await params;
@@ -66,7 +70,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
 
         {/* Similar Products Section */}
-        <SimilarProducts productId={product._id} categoryId={product.category._id} />
+        <SimilarProducts
+          productId={product._id}
+          categoryId={product.category._id}
+        />
       </main>
     </Suspense>
   );

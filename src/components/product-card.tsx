@@ -79,9 +79,10 @@ export function ProductCard({ product }: ProductCardProps) {
               addItem(product, product.selectedVariant, 1);
               toast.success(t("added"));
             }}
-            className="bg-accent hover:bg-accent/90 text-accent-foreground"
+            disabled={!product.selectedVariant.availability}
+            className="bg-accent hover:bg-accent/90 text-accent-foreground disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {t("add_to_cart")}
+            {product.selectedVariant.availability ? t("add_to_cart") : t("outOfStock")}
           </Button>
         </div>
       </div>
