@@ -9,8 +9,12 @@ import { SimilarProducts } from "@/components/similar-products";
 import type { Metadata } from 'next'
 import { client } from "@/sanity/lib/client";
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const { id } = params;
+interface ProductPageProps {
+  params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { id } = await params;
 
   const product = await client.fetch<{ name: string; description: string; imageUrl: string | null } | null>(
     `*[_type == "product" && _id == $id][0]{
@@ -36,10 +40,6 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
-
-interface ProductPageProps {
-  params: Promise<{ id: string }>;
-}
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = await params;
