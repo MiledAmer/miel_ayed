@@ -6,6 +6,36 @@ import { ChevronLeft } from "lucide-react";
 import { Suspense } from "react";
 import { getProductByID } from "@/sanity/sanity-utils";
 import { SimilarProducts } from "@/components/similar-products";
+import type { Metadata } from 'next'
+import { client } from "@/sanity/lib/client";
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const { id } = params;
+
+  const product = await client.fetch<{ name: string; description: string; imageUrl: string | null } | null>(
+    `*[_type == "product" && _id == $id][0]{
+      name,
+      description,
+      "imageUrl": image.asset->url
+    }`,
+    { id }
+  );
+
+  if (!product) {
+    return { title: 'Produit non trouvé' };
+  }
+
+  return {
+    title: product.name,
+    description: product.description,
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      images: product.imageUrl ? [product.imageUrl] : undefined,
+    },
+  };
+}
+
 
 interface ProductPageProps {
   params: Promise<{ id: string }>;

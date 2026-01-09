@@ -51,6 +51,7 @@ export function ProductCard({ product }: ProductCardProps) {
             alt={getName()}
             fill
             className="object-cover transition-transform duration-300 hover:scale-105"
+            loading="lazy"
           />
         </div>
       </Link>
