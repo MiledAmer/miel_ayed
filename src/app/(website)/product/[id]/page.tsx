@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Suspense } from "react";
 import { getProductByID } from "@/sanity/sanity-utils";
+import { SimilarProducts } from "@/components/similar-products";
 
 interface ProductPageProps {
   params: Promise<{ id: string }>;
@@ -33,6 +34,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Product Detail */}
           <ProductDetail product={product} />
         </div>
+
+        {/* Similar Products Section */}
+        <SimilarProducts productId={product._id} categoryId={product.category._id} />
       </main>
     </Suspense>
   );

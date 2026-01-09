@@ -60,7 +60,8 @@
     "products": "المنتجات",
     "no_results": "لم يتم العثور على منتجات لهذا المرشح.",
     "showing": "عرض",
-    "products_count": "منتجات"
+    "products_count": "منتجات",
+    "similar_products": "منتجات مشابهة"
   },
   "ContactPage": {
     "title": "اتصل بنا",

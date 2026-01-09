@@ -173,7 +173,9 @@ export interface CategoryWithProducts extends Category {
   products: Product[];
 }
 
-export async function getLandingPageTopSales(): Promise<CategoryWithProducts[]> {
+export async function getLandingPageTopSales(): Promise<
+  CategoryWithProducts[]
+> {
   const query = groq`
     *[_type == "category" && LandingPageTopSales == true] {
       _id,
@@ -203,4 +205,33 @@ export async function getLandingPageTopSales(): Promise<CategoryWithProducts[]> 
   `;
 
   return client.fetch(query);
+}
+
+export async function getSimilarProducts(
+  productId: string,
+  categoryId: string,
+  limit = 4,
+): Promise<Product[]> {
+  const query = groq`
+    *[_type == "product" && category._ref == $categoryId && _id != $productId] | order(_createdAt desc) [0...${limit}] {
+      _id,
+      title,
+      description,
+      variants,
+      image,
+      selectedVariant,
+      category-> {
+        _id,
+        name,
+        slug
+      },
+      subcategory-> {
+        _id,
+        name,
+        slug
+      }
+    }
+  `;
+
+  return client.fetch<Product[]>(query, { productId, categoryId });
 }
