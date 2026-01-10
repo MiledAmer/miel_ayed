@@ -15,36 +15,36 @@ interface ProductPageProps {
   params: Promise<{ id: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: ProductPageProps): Promise<Metadata> {
-  const { id } = await params;
+// export async function generateMetadata({
+//   params,
+// }: ProductPageProps): Promise<Metadata> {
+//   const { id } = await params;
 
-  const product = await client.fetch<Product | null>(
-    `*[_type == "product" && _id == $id][0]{
-      title,
-      description,
-      image
-    }`,
-    { id },
-  );
+//   const product = await client.fetch<Product | null>(
+//     `*[_type == "product" && _id == $id][0]{
+//       title,
+//       description,
+//       image
+//     }`,
+//     { id },
+//   );
 
-  if (!product) {
-    return { title: "Produit non trouvé" };
-  }
+//   if (!product) {
+//     return { title: "Produit non trouvé" };
+//   }
 
-  const imageUrl = product.image ? urlFor(product.image)?.url() : "/organic-acacia-honey.jpg";
+//   const imageUrl = product.image ? urlFor(product.image)?.url() : "/organic-acacia-honey.jpg";
 
-  return {
-    title: product.title.fr,
-    description: product.description.fr,
-    openGraph: {
-      title: product.title.fr,
-      description: product.description.fr,
-      images: imageUrl ? [imageUrl] : undefined,
-    },
-  };
-}
+//   return {
+//     title: product.title.fr,
+//     description: product.description.fr,
+//     openGraph: {
+//       title: product.title.fr,
+//       description: product.description.fr,
+//       images: imageUrl ? [imageUrl] : undefined,
+//     },
+//   };
+// }
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = await params;
