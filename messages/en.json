@@ -3,6 +3,27 @@
     "previous": "Previous",
     "next": "Next"
   },
+  "PrizeDraw": {
+    "press_me": "Press Me 🎉",
+    "congratulations": "Congratulations! You Won! 🍯",
+    "thank_you_message": "Thank you for your participation, after submitting the form you will claim your gift.",
+    "full_name": "Full Name",
+    "full_name_placeholder": "Your name",
+    "phone_number": "Phone Number",
+    "phone_number_placeholder": "Your phone number",
+    "claim_gift": "Claim Gift",
+    "contact_info_message": "You can contact us form the website or by email and give us your code if anything goes wrong.",
+    "gift_claimed_success": "Gift Claimed Successfully! 🎉",
+    "participation_recorded": "Your participation has been recorded.",
+    "your_winner_code": "Your Winner Code:",
+    "save_code_message": "Please save this code! If anything goes wrong, contact us by email or through the website with this code.",
+    "back": "Back",
+    "prize_already_claimed": "Prize has already been claimed.",
+    "validation": {
+      "name_min": "Name must be at least 2 characters",
+      "phone_min": "Phone number must be at least 8 characters"
+    }
+  },
   "HomePage": {
     "Header": {
       "products": "Products",

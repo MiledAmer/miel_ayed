@@ -18,6 +18,28 @@ interface CreateOrderParams {
   totalAmount: number;
 }
 
+interface CreatePrizeParams {
+  name: string;
+  phoneNumber: string;
+  code: string;
+}
+
+export async function createPrize(prizeData: CreatePrizeParams) {
+  try {
+    const result = await client.create({
+      _type: "prize",
+      name: prizeData.name,
+      phoneNumber: prizeData.phoneNumber,
+      code: prizeData.code,
+    });
+
+    return { success: true, id: result._id };
+  } catch (error) {
+    console.error("Error creating prize:", error);
+    return { success: false, error: "Failed to submit prize entry" };
+  }
+}
+
 export async function createOrder(orderData: CreateOrderParams) {
   try {
     const orderNumber = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;

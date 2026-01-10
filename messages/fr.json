@@ -3,6 +3,27 @@
     "previous": "Précédent",
     "next": "Suivant"
   },
+  "PrizeDraw": {
+    "press_me": "Appuyez ici 🎉",
+    "congratulations": "Félicitations ! Vous avez gagné ! 🍯",
+    "thank_you_message": "Merci de votre participation. Après avoir soumis le formulaire, vous pourrez réclamer votre cadeau.",
+    "full_name": "Nom complet",
+    "full_name_placeholder": "Votre nom",
+    "phone_number": "Numéro de téléphone",
+    "phone_number_placeholder": "Votre numéro de téléphone",
+    "claim_gift": "Réclamer le cadeau",
+    "contact_info_message": "Vous pouvez nous contacter via le site web ou par email et nous donner votre code si quelque chose ne va pas.",
+    "gift_claimed_success": "Cadeau réclamé avec succès ! 🎉",
+    "participation_recorded": "Votre participation a été enregistrée.",
+    "your_winner_code": "Votre code gagnant :",
+    "save_code_message": "Veuillez conserver ce code ! Si quelque chose ne va pas, contactez-nous par email ou via le site web avec ce code.",
+    "back": "Retour",
+    "prize_already_claimed": "Le prix a déjà été réclamé.",
+    "validation": {
+      "name_min": "Le nom doit comporter au moins 2 caractères",
+      "phone_min": "Le numéro de téléphone doit comporter au moins 8 caractères"
+    }
+  },
   "HomePage": {
     "Header": {
       "products": "Produits",
