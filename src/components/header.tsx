@@ -5,12 +5,12 @@ import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/lib/store";
 import { MobileNav } from "./mobile-nav";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "./theme-toggle";
 import { LanguageSelector } from "./language-selector";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import type { Category } from "@/sanity/types/categories";
 import { HeaderNavigation } from "./header-navigation";
+// import { ThemeToggle } from "./theme-toggle";
 
 export function Header({ categories }: { categories: Category[] }) {
   const locale = useLocale();
@@ -20,7 +20,6 @@ export function Header({ categories }: { categories: Category[] }) {
   const isRTL = locale === "ar";
 
   const cartCount = items.reduce((sum, item) => sum + item.quantity, 0);
-
 
   return (
     <header
@@ -49,7 +48,12 @@ export function Header({ categories }: { categories: Category[] }) {
             <LanguageSelector />
 
             <Link href="/cart">
-              <Button variant="outline" size="icon" className="relative" aria-label={t("cart")}>
+              <Button
+                variant="outline"
+                size="icon"
+                className="relative"
+                aria-label={t("cart")}
+              >
                 <ShoppingCart className="h-5 w-5" />
                 {cartCount > 0 && (
                   <span className="bg-accent text-accent-foreground absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold">
@@ -58,9 +62,9 @@ export function Header({ categories }: { categories: Category[] }) {
                 )}
               </Button>
             </Link>
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
           </div>
-          <MobileNav categories={categories}/>
+          <MobileNav categories={categories} />
         </div>
       </div>
     </header>

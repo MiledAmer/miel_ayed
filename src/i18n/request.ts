@@ -1,10 +1,9 @@
 import { getRequestConfig } from "next-intl/server";
 import { cookies } from "next/headers";
-import { revalidatePath } from "next/cache";
 
 export default getRequestConfig(async () => {
   const store = await cookies();
-  const locale = store.get("locale")?.value ?? "en";
+  const locale = store.get("locale")?.value ?? "ar";
 
   return {
     locale,
