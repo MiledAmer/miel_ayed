@@ -5,6 +5,7 @@ import CircularGallery from "@/components/CircularGallery";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Image from "next/image";
 import { galleryImages } from "@/data/gallery-images";
+import Stack from "@/components/Stack";
 
 export default function AboutPage() {
   const isMobile = useIsMobile();
@@ -19,6 +20,42 @@ export default function AboutPage() {
   }
 
   const bendValue = isMobile ? 0.3 : 1;
+
+  const abdouImages = [
+    <Image
+      key="img1"
+      src="/about/abdou/el-moudir-1.jpg"
+      alt="Abd El Hedi Ayed - Founder"
+      width={600}
+      height={600}
+      className="h-full w-full object-cover pointer-events-none rounded-xl"
+    />,
+    <Image
+      key="img2"
+      src="/about/abdou/el-moudir-2.jpg"
+      alt="Abd El Hedi Ayed - Beekeeping"
+      width={600}
+      height={600}
+      className="h-full w-full object-cover pointer-events-none rounded-xl"
+    />,
+    <Image
+      key="img3"
+      src="/about/abdou/el-moudir-3.jpg"
+      alt="Abd El Hedi Ayed - Nature"
+      width={600}
+      height={600}
+      className="h-full w-full object-cover pointer-events-none rounded-xl"
+    />,
+    <Image
+      key="img4"
+      src="/about/abdou/el-moudir-4.jpg"
+      alt="Abd El Hedi Ayed - Production"
+      width={600}
+      height={600}
+      className="h-full w-full object-cover pointer-events-none rounded-xl"
+    />,
+  ];
+
   return (
     <div className="bg-background min-h-screen">
       {/* Hero Section */}
@@ -49,12 +86,16 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="bg-muted relative h-80 overflow-hidden rounded-lg">
-              <Image
+              {/* <Image
                 src="/about/le_moudir.jpg"
                 alt="Abd El Hedi Ayed"
                 className="h-full w-full object-cover"
                 fill
-              />
+              /> */}
+
+              <div className="h-full w-full p-10">
+                <Stack autoplay autoplayDelay={2500} pauseOnHover={true} cards={abdouImages} />
+              </div>
             </div>
           </div>
         </div>
