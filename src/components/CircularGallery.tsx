@@ -28,7 +28,7 @@ function autoBind(instance: any): void {
 
 function getFontSize(font: string): number {
   const match = font.match(/(\d+)px/);
-  return match ? parseInt(match[1], 10) : 30;
+  return match ? parseInt(match[1] as string, 10) : 30;
 }
 
 function createTextTexture(
@@ -552,12 +552,12 @@ class App {
   onTouchDown(e: MouseEvent | TouchEvent) {
     this.isDown = true;
     this.scroll.position = this.scroll.current;
-    this.start = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    this.start = 'touches' in e ? e.touches[0]!.clientX : e.clientX;
   }
 
   onTouchMove(e: MouseEvent | TouchEvent) {
     if (!this.isDown) return;
-    const x = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const x = 'touches' in e ? e.touches[0]!.clientX : e.clientX;
     const distance = (this.start - x) * (this.scrollSpeed * 0.025);
     this.scroll.target = (this.scroll.position ?? 0) + distance;
   }

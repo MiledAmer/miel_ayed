@@ -7,7 +7,7 @@ const compat = new FlatCompat({
 
 export default tseslint.config(
   {
-    ignores: [".next", "src/lib/i18n.ts", "src/components/ui/*.{ts,tsx}", "src/i18n/request.ts" ],
+    ignores: [".next", "src/lib/i18n.ts", "src/components/ui/*.{ts,tsx}", "src/i18n/request.ts", "src/components/CircularGallery.tsx", "/src/components/Stack.tsx"],
   },
   ...compat.extends("next/core-web-vitals"),
   {

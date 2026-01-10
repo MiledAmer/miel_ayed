@@ -148,7 +148,7 @@ export default function Stack({
       const newStack = [...prev];
       const index = newStack.findIndex(card => card.id === id);
       const [card] = newStack.splice(index, 1);
-      newStack.unshift(card);
+      newStack.unshift(card!);
       return newStack;
     });
   };
@@ -156,7 +156,7 @@ export default function Stack({
   useEffect(() => {
     if (autoplay && stack.length > 1 && !isPaused) {
       const interval = setInterval(() => {
-        const topCardId = stack[stack.length - 1].id;
+        const topCardId = stack[stack.length - 1]!.id;
         sendToBack(topCardId);
       }, autoplayDelay);
 
