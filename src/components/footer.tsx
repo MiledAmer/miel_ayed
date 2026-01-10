@@ -64,7 +64,9 @@ export function Footer() {
           <div>
             <h3 className="mb-4 text-lg font-bold">{t("contact")}</h3>
             <ul className="space-y-2 text-sm">
-              <li>{t("phone")}: +216 53 854 810</li>
+              <li>
+                {t("phone")}: <span dir="ltr">+216 53 854 810</span>
+              </li>
               <li>{t("email")}: contact@mielayed.com</li>
             </ul>
           </div>

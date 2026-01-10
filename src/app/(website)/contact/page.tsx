@@ -158,8 +158,9 @@ export default function ContactPage() {
                     {t("phone")}
                   </h3>
                   <a
-                    href="tel:+216XXXXXXXX"
+                    href="tel:+21653854810"
                     className="text-muted-foreground hover:text-accent transition-colors"
+                    dir ="ltr"
                   >
                     {t("phone_number")}
                   </a>
