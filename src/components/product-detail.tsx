@@ -75,11 +75,6 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <h1 className="text-primary mb-2 text-3xl font-bold md:text-4xl">
               {getName()}
             </h1>
-            {/* {product.subcategory && (
-              <p className="text-muted-foreground mb-2 text-sm">
-                {product.subcategory}
-              </p>
-            )} */}
           </div>
 
           {/* Variants */}
