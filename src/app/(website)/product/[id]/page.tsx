@@ -32,7 +32,7 @@ export async function generateMetadata({
     return { title: "Produit non trouvé" };
   }
 
-  const imageUrl = product.image ? urlFor(product.image)?.url() : null;
+  const imageUrl = product.image ? urlFor(product.image)?.url() : "/organic-acacia-honey.jpg";
 
   return {
     title: product.title.fr,
