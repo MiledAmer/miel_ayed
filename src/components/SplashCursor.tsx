@@ -1192,8 +1192,8 @@ export default function SplashCursor({
       const pointer = pointers[0];
       const posX = scaleByPixelRatio(e.clientX);
       const posY = scaleByPixelRatio(e.clientY);
-      updatePointerDownData(pointer, -1, posX, posY);
-      clickSplat(pointer);
+      updatePointerDownData(pointer!, -1, posX, posY);
+      clickSplat(pointer!);
     });
 
     function handleFirstMouseMove(e: MouseEvent) {
@@ -1202,7 +1202,7 @@ export default function SplashCursor({
       const posY = scaleByPixelRatio(e.clientY);
       const color = generateColor();
       updateFrame();
-      updatePointerMoveData(pointer, posX, posY, color);
+      updatePointerMoveData(pointer!, posX, posY, color);
       document.body.removeEventListener('mousemove', handleFirstMouseMove);
     }
     document.body.addEventListener('mousemove', handleFirstMouseMove);
@@ -1211,18 +1211,18 @@ export default function SplashCursor({
       const pointer = pointers[0];
       const posX = scaleByPixelRatio(e.clientX);
       const posY = scaleByPixelRatio(e.clientY);
-      const color = pointer.color;
-      updatePointerMoveData(pointer, posX, posY, color);
+      const color = pointer!.color;
+      updatePointerMoveData(pointer!, posX, posY, color);
     });
 
     function handleFirstTouchStart(e: TouchEvent) {
       const touches = e.targetTouches;
       const pointer = pointers[0];
       for (let i = 0; i < touches.length; i++) {
-        const posX = scaleByPixelRatio(touches[i].clientX);
-        const posY = scaleByPixelRatio(touches[i].clientY);
+        const posX = scaleByPixelRatio(touches[i]!.clientX);
+        const posY = scaleByPixelRatio(touches[i]!.clientY);
         updateFrame();
-        updatePointerDownData(pointer, touches[i].identifier, posX, posY);
+        updatePointerDownData(pointer!, touches[i]!.identifier, posX, posY);
       }
       document.body.removeEventListener('touchstart', handleFirstTouchStart);
     }
@@ -1234,9 +1234,9 @@ export default function SplashCursor({
         const touches = e.targetTouches;
         const pointer = pointers[0];
         for (let i = 0; i < touches.length; i++) {
-          const posX = scaleByPixelRatio(touches[i].clientX);
-          const posY = scaleByPixelRatio(touches[i].clientY);
-          updatePointerDownData(pointer, touches[i].identifier, posX, posY);
+          const posX = scaleByPixelRatio(touches[i]!.clientX);
+          const posY = scaleByPixelRatio(touches[i]!.clientY);
+          updatePointerDownData(pointer!, touches[i]!.identifier, posX, posY);
         }
       },
       false
@@ -1248,9 +1248,9 @@ export default function SplashCursor({
         const touches = e.targetTouches;
         const pointer = pointers[0];
         for (let i = 0; i < touches.length; i++) {
-          const posX = scaleByPixelRatio(touches[i].clientX);
-          const posY = scaleByPixelRatio(touches[i].clientY);
-          updatePointerMoveData(pointer, posX, posY, pointer.color);
+          const posX = scaleByPixelRatio(touches[i]!.clientX);
+          const posY = scaleByPixelRatio(touches[i]!.clientY);
+          updatePointerMoveData(pointer!, posX, posY, pointer!.color);
         }
       },
       false
@@ -1260,7 +1260,7 @@ export default function SplashCursor({
       const touches = e.changedTouches;
       const pointer = pointers[0];
       for (let i = 0; i < touches.length; i++) {
-        updatePointerUpData(pointer);
+        updatePointerUpData(pointer!);
       }
     });
   }, [
