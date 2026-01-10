@@ -6,8 +6,10 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import Image from "next/image";
 import { galleryImages } from "@/data/gallery-images";
 import Stack from "@/components/Stack";
+import { useTranslations } from "next-intl";
 
 export default function AboutPage() {
+  const t = useTranslations("AboutPage");
   const isMobile = useIsMobile();
   const [mounted, setMounted] = useState(false);
 
@@ -25,34 +27,34 @@ export default function AboutPage() {
     <Image
       key="img1"
       src="/about/abdou/el-moudir-1.jpg"
-      alt="Abd El Hedi Ayed - Founder"
+      alt={t("founder_alt")}
       width={600}
       height={600}
-      className="h-full w-full object-cover pointer-events-none rounded-xl"
+      className="pointer-events-none h-full w-full rounded-xl object-cover"
     />,
     <Image
       key="img2"
       src="/about/abdou/el-moudir-2.jpg"
-      alt="Abd El Hedi Ayed - Beekeeping"
+      alt={t("beekeeping_alt")}
       width={600}
       height={600}
-      className="h-full w-full object-cover pointer-events-none rounded-xl"
+      className="pointer-events-none h-full w-full rounded-xl object-cover"
     />,
     <Image
       key="img3"
       src="/about/abdou/el-moudir-3.jpg"
-      alt="Abd El Hedi Ayed - Nature"
+      alt={t("nature_alt")}
       width={600}
       height={600}
-      className="h-full w-full object-cover pointer-events-none rounded-xl"
+      className="pointer-events-none h-full w-full rounded-xl object-cover"
     />,
     <Image
       key="img4"
       src="/about/abdou/el-moudir-4.jpg"
-      alt="Abd El Hedi Ayed - Production"
+      alt={t("production_alt")}
       width={600}
       height={600}
-      className="h-full w-full object-cover pointer-events-none rounded-xl"
+      className="pointer-events-none h-full w-full rounded-xl object-cover"
     />,
   ];
 
@@ -62,11 +64,9 @@ export default function AboutPage() {
       <section className="relative px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="text-foreground mb-6 text-5xl font-bold text-balance sm:text-6xl">
-            Miel Ayed : L'Authenticité avant tout
+            {t("title")}
           </h1>
-          <p className="text-muted-foreground text-xl">
-            {"Idéale pour un design moderne et épuré"}
-          </p>
+          <p className="text-muted-foreground text-xl">{t("intro")}</p>
         </div>
       </section>
 
@@ -76,25 +76,20 @@ export default function AboutPage() {
           <div className="grid items-center gap-12 md:grid-cols-2">
             <div>
               <h2 className="text-card-foreground mb-6 text-3xl font-bold">
-                Notre Histoire
+                {t("story_title")}
               </h2>
               <p className="text-muted-foreground mb-4 text-lg leading-relaxed">
-                Chez Miel Ayed, nous sommes fiers d'être plus que de simples
-                vendeurs : nous sommes éleveurs et producteurs. Fondée par Abd
-                El Hedi Ayed, notre marque est née d'une volonté simple : offrir
-                un miel d'une pureté exceptionnelle, tel qu'il sort de la ruche.
+                {t("story_desc")}
               </p>
             </div>
             <div className="bg-muted relative h-80 overflow-hidden rounded-lg">
-              {/* <Image
-                src="/about/le_moudir.jpg"
-                alt="Abd El Hedi Ayed"
-                className="h-full w-full object-cover"
-                fill
-              /> */}
-
               <div className="h-full w-full p-10">
-                <Stack autoplay autoplayDelay={2500} pauseOnHover={true} cards={abdouImages} />
+                <Stack
+                  autoplay
+                  autoplayDelay={2500}
+                  pauseOnHover={true}
+                  cards={abdouImages}
+                />
               </div>
             </div>
           </div>
@@ -105,10 +100,10 @@ export default function AboutPage() {
       <section className="bg-muted/30 px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-foreground mb-3 text-center text-2xl font-bold sm:mb-4 sm:text-3xl lg:text-4xl">
-            Miel Ayed Around the World
+            {t("gallery_title")}
           </h2>
           <p className="text-muted-foreground mb-12 text-center text-base sm:mb-16 sm:text-lg">
-            {"Découvrez notre voyage à travers différents paysages et cultures"}
+            {t("gallery_subtitle")}
           </p>
           <div className="relative h-80 sm:h-96 md:h-[500px] lg:h-[600px]">
             <CircularGallery
@@ -131,7 +126,7 @@ export default function AboutPage() {
             <div className="bg-muted relative order-2 h-[500px] overflow-hidden rounded-2xl lg:order-1">
               <Image
                 src="/product.webp"
-                alt="Miel Ayed Products"
+                alt={t("products_alt")}
                 className="h-full w-full object-cover"
                 fill
               />
@@ -140,7 +135,7 @@ export default function AboutPage() {
             {/* Content Side */}
             <div className="order-1 lg:order-2">
               <h2 className="text-foreground mb-8 text-4xl font-bold">
-                Pourquoi choisir Miel Ayed ?
+                {t("why_choose_title")}
               </h2>
 
               <div className="space-y-6">
@@ -162,12 +157,10 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <h3 className="text-foreground mb-2 text-xl font-bold">
-                      Production Artisanale
+                      {t("artisanal_production_title")}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      Tout notre miel est récolté au sein de notre propre
-                      élevage d'abeilles. Nous connaissons nos ruches et nous
-                      respectons leur cycle naturel.
+                      {t("artisanal_production_desc")}
                     </p>
                   </div>
                 </div>
@@ -190,11 +183,10 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <h3 className="text-foreground mb-2 text-xl font-bold">
-                      Garantie Sans Additifs
+                      {t("additives_free_title")}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      Nous luttons contre les miels frelatés. Nos produits sont
-                      garantis sans aucun ajout de sucre, sirop ou colorant.
+                      {t("additives_free_desc")}
                     </p>
                   </div>
                 </div>
@@ -217,12 +209,10 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <h3 className="text-foreground mb-2 text-xl font-bold">
-                      Un Savoir-Faire Passionné
+                      {t("passionate_expertise_title")}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      Guidés par l'expertise d'Abd El Hedi Ayed, grand
-                      admirateur du monde apicole, nous privilégions la qualité
-                      à la quantité.
+                      {t("passionate_expertise_desc")}
                     </p>
                   </div>
                 </div>
@@ -230,7 +220,7 @@ export default function AboutPage() {
 
               <div className="border-border mt-8 border-t pt-8">
                 <p className="text-primary text-2xl font-semibold">
-                  Goûtez la différence d'un miel 100% naturel
+                  {t("taste_difference")}
                 </p>
               </div>
             </div>
