@@ -3,7 +3,7 @@ import SplashCursor from "@/components/SplashCursor";
 
 export default function Page() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background">
+    <div className="bg-background flex min-h-screen items-center justify-center">
       <SplashCursor />
       hello
     </div>
