@@ -145,7 +145,7 @@ export default function AboutPage() {
 
               <div className="space-y-6">
                 <div className="flex gap-4">
-                  <div className="bg-primary/10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full">
+                  <div className="bg-primary/10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
                     <svg
                       className="text-primary h-6 w-6"
                       fill="none"
@@ -173,7 +173,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="bg-primary/10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full">
+                  <div className="bg-primary/10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
                     <svg
                       className="text-primary h-6 w-6"
                       fill="none"
@@ -200,7 +200,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="bg-primary/10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full">
+                  <div className="bg-primary/10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
                     <svg
                       className="text-primary h-6 w-6"
                       fill="none"
