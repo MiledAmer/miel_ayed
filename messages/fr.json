@@ -61,7 +61,8 @@
     "no_results": "Aucun produit trouvé pour ce filtre.",
     "showing": "Affichage",
     "products_count": "produits",
-    "similar_products": "Produits Similaires"
+    "similar_products": "Produits Similaires",
+    "back_to_products": "Retour aux Produits"
   },
   "ContactPage": {
     "title": "Nous Contacter",

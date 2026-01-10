@@ -9,6 +9,7 @@ import { SimilarProducts } from "@/components/similar-products";
 import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import type { Product } from "@/sanity/types/products";
+import { getTranslations } from "next-intl/server";
 
 interface ProductPageProps {
   params: Promise<{ id: string }>;
@@ -48,6 +49,7 @@ export async function generateMetadata({
 export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = await params;
   const product = await getProductByID(id);
+  const t = await getTranslations("ProductsPage");
 
   if (!product) {
     notFound();
@@ -60,8 +62,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Back Button */}
           <Link href="/products">
             <Button variant="ghost" className="mb-8">
-              <ChevronLeft className="mr-2 h-4 w-4" />
-              Back to Products
+              <ChevronLeft className="mr-2 h-4 w-4 rtl:rotate-180" />
+              {t("back_to_products")}
             </Button>
           </Link>
 
