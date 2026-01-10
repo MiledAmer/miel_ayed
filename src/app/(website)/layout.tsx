@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { getCategoriesWithSubcategories } from "@/sanity/sanity-utils";
 import { NextIntlClientProvider } from "next-intl";
 import { Toaster } from "@/components/ui/sonner";
+import { Analytics } from "@vercel/analytics/next"
 
 export default async function RootLayout({
   children,
@@ -36,7 +37,7 @@ export default async function RootLayout({
         />
       </NextIntlClientProvider>
 
-      {/* <Analytics /> */}
+      <Analytics />
     </ThemeProvider>
   );
 }
