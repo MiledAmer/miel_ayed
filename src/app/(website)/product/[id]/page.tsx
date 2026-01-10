@@ -21,7 +21,7 @@ export async function generateMetadata({
 
   const product = await client.fetch<Product | null>(
     `*[_type == "product" && _id == $id][0]{
-      name,
+      title,
       description,
       image
     }`,
